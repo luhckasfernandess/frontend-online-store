@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
-import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './pages/Home';
 
-class App extends Component() {
+class App extends Component {
   render() {
     return (
-      <div>
-        <h1>Projeto</h1>
-      </div>
+      <BrowserRouter>
+        <Route
+          exact
+          path="/"
+          render={ () => (
+            <Home
+              name="Digite algum termo de pesquisa ou escolha uma categoria."
+            />
+          ) }
+        />
+      </BrowserRouter>
     );
   }
 }
