@@ -6,7 +6,15 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Route exact path="/" render={ () => <Home name="Digite algum termo de pesquisa ou escolha uma categoria." /> } />
+        <Route
+          exact
+          path="/"
+          render={ () => (
+            <Home
+              name="Digite algum termo de pesquisa ou escolha uma categoria."
+            />
+          ) }
+        />
       </BrowserRouter>
     );
   }
