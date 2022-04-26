@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
+import Icon from '../img/Cart.svg';
 
 class Home extends Component {
   render() {
@@ -12,7 +12,7 @@ class Home extends Component {
           <input type="text" />
         </label>
         <Link to="/cart" data-testid="shopping-cart-button">
-          <Icon icon="ant-design:shopping-cart-outlined" />
+          <img src={ Icon } alt="icon" />
         </Link>
         <p data-testid="home-initial-message">
           {name}
