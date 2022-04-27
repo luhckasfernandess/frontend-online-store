@@ -60,15 +60,12 @@ class Home extends Component {
               />
             </label>
             <label htmlFor="input-button">
-              <button
+              <input
                 type="button"
                 data-testid="query-button"
                 onClick={ this.handlerClick }
-                value={ product }
-                id="input-button"
-              >
-                Search
-              </button>
+                value="Search"
+              />
             </label>
             <Link to="/cart" data-testid="shopping-cart-button">
               <img src={ Icon } alt="icon" />
