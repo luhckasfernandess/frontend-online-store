@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Card.css';
 import PropTypes from 'prop-types';
 
@@ -7,11 +8,13 @@ class Card extends Component {
     const { arrayProduct } = this.props;
     return (
       <div>
-        {arrayProduct.map(({ id, thumbnail, price, title }) => (
-          <section key={ id } data-testid="product">
-            <img src={ thumbnail } alt={ title } />
-            <p>{ title }</p>
-            <span>{ price }</span>
+        {arrayProduct.map((item) => (
+          <section key={ item.id } data-testid="product">
+            <Link to={ `/CardDetails/${item.id}` } data-testid="product-detail-link">
+              <img src={ item.thumbnail } alt={ item.title } />
+            </Link>
+            <p>{ item.title }</p>
+            <span>{ item.price }</span>
           </section>
         )) }
       </div>
