@@ -15,6 +15,7 @@ class Home extends Component {
       product: '',
       categoria: '',
       fraseIncial: true,
+      loading: false,
     };
   }
 
@@ -31,7 +32,7 @@ class Home extends Component {
   getApiProducts = async () => {
     const { product, categoria } = this.state;
     const data = await getProductsFromCategoryAndQuery(categoria, product);
-    this.setState({ arrayProduct: data.results });
+    this.setState({ arrayProduct: data.results, loading: false });
   }
 
   handlerChange = ({ target }) => {
@@ -40,7 +41,7 @@ class Home extends Component {
   }
 
   handlerClick = () => {
-    this.setState({ fraseIncial: false }, () => {
+    this.setState({ fraseIncial: false, loading: true }, () => {
       this.getApiProducts();
     });
   }
@@ -51,9 +52,10 @@ class Home extends Component {
   }
 
   render() {
-    const { arrayCategoria, fraseIncial, arrayProduct, product } = this.state;
+    const { arrayCategoria, fraseIncial, arrayProduct, product, loading } = this.state;
     const { name } = this.props;
     const frase = <span data-testid="home-initial-message">{name}</span>;
+    const loadingElement = <span>Loading...</span>;
     return (
       <main className="main">
         <form>
@@ -80,6 +82,7 @@ class Home extends Component {
             </Link>
           </div>
           { fraseIncial ? frase : !frase }
+          { loading ? loadingElement : !loadingElement }
           <Card arrayProduct={ arrayProduct } />
         </form>
         <aside>
