@@ -9,7 +9,6 @@ import './Home.css';
 class Home extends Component {
   constructor() {
     super();
-
     this.state = {
       arrayCategoria: [],
       arrayProduct: [],
@@ -85,7 +84,6 @@ class Home extends Component {
                 onChange={ this.handlerClick }
                 value={ item.id }
                 name="categoria"
-                data-testid=""
               />
               <span>{item.name}</span>
             </label>
