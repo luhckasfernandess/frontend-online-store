@@ -20,6 +20,18 @@ class Home extends Component {
 
   componentDidMount = () => {
     this.getApiCategoria();
+    this.getApiProducts();
+  }
+
+  getApiCategoria = async () => {
+    const data = await getCategories();
+    this.setState({ arrayCategoria: data });
+  }
+
+  getApiProducts = async () => {
+    const { product, categoria } = this.state;
+    const data = await getProductsFromCategoryAndQuery(categoria, product);
+    this.setState({ arrayProduct: data.results });
   }
 
   handlerChange = ({ target }) => {
@@ -27,22 +39,15 @@ class Home extends Component {
     this.setState({ [name]: value });
   }
 
-  handlerRadio = async (event) => {
-    await this.handlerChange(event);
-    this.handlerClick();
-  }
-
-  handlerClick = async () => {
-    const { product, categoria } = this.state;
-    this.setState({ fraseIncial: false }, async () => {
-      const data = await getProductsFromCategoryAndQuery(categoria, product);
-      this.setState({ arrayProduct: data.results });
+  handlerClick = () => {
+    this.setState({ fraseIncial: false }, () => {
+      this.getApiProducts();
     });
   }
 
-  getApiCategoria = async () => {
-    const data = await getCategories();
-    this.setState({ arrayCategoria: data });
+  handlerRadio = async (event) => {
+    await this.handlerChange(event);
+    this.handlerClick();
   }
 
   render() {
@@ -74,7 +79,8 @@ class Home extends Component {
               <img src={ Icon } alt="icon" />
             </Link>
           </div>
-          {fraseIncial ? frase : <Card arrayProduct={ arrayProduct } /> }
+          { fraseIncial ? frase : !frase }
+          <Card arrayProduct={ arrayProduct } />
         </form>
         <aside>
           {arrayCategoria.map((item) => (
