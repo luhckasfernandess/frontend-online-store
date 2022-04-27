@@ -27,9 +27,13 @@ class Home extends Component {
     this.setState({ [name]: value });
   }
 
+  handlerRadio = async (event) => {
+    await this.handlerChange(event);
+    this.handlerClick();
+  }
+
   handlerClick = async () => {
     const { product, categoria } = this.state;
-    console.log(categoria);
     this.setState({ fraseIncial: true }, async () => {
       const data = await getProductsFromCategoryAndQuery(categoria, product);
       this.setState({ fraseIncial: false, arrayProduct: data.results });
@@ -80,8 +84,8 @@ class Home extends Component {
               data-testid="category"
             >
               <input
-                type="checkbox"
-                onChange={ this.handlerClick }
+                type="radio"
+                onClick={ this.handlerRadio }
                 value={ item.id }
                 name="categoria"
               />
