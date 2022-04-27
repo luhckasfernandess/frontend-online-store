@@ -34,9 +34,9 @@ class Home extends Component {
 
   handlerClick = async () => {
     const { product, categoria } = this.state;
-    this.setState({ fraseIncial: true }, async () => {
+    this.setState({ fraseIncial: false }, async () => {
       const data = await getProductsFromCategoryAndQuery(categoria, product);
-      this.setState({ fraseIncial: false, arrayProduct: data.results });
+      this.setState({ arrayProduct: data.results });
     });
   }
 
