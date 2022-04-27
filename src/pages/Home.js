@@ -53,7 +53,7 @@ class Home extends Component {
 
   render() {
     const { arrayCategoria, fraseIncial, arrayProduct, product, loading } = this.state;
-    const { name } = this.props;
+    const { name, addCart } = this.props;
     const frase = <span data-testid="home-initial-message">{name}</span>;
     const loadingElement = <span>Loading...</span>;
     return (
@@ -83,7 +83,7 @@ class Home extends Component {
           </div>
           { fraseIncial ? frase : !frase }
           { loading ? loadingElement : !loadingElement }
-          <Card arrayProduct={ arrayProduct } />
+          <Card arrayProduct={ arrayProduct } addCart={ addCart } />
         </form>
         <aside>
           {arrayCategoria.map((item) => (
@@ -109,6 +109,7 @@ class Home extends Component {
 
 Home.propTypes = {
   name: PropTypes.string.isRequired,
+  addCart: PropTypes.func.isRequired,
 };
 
 export default Home;
