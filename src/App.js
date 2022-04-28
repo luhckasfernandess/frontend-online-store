@@ -33,6 +33,7 @@ class App extends Component {
             <Home
               name="Digite algum termo de pesquisa ou escolha uma categoria."
               addCart={ this.addCart }
+              addId={ this.addId }
             />
           ) }
         />
@@ -44,7 +45,16 @@ class App extends Component {
             />
           ) }
         />
-        <Route path="/CardDetails/:id" component={ CardDetails } />
+        <Route
+          path="/CardDetails/:id"
+          render={ (props) => (
+            <CardDetails
+              { ...props }
+              addCart={ this.addCart }
+              itemProduct={ itemProduct }
+            />
+          ) }
+        />
       </BrowserRouter>
     );
   }
