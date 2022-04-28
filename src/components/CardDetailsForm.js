@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 class CardDetailsForm extends Component {
-  DATA;
-
   constructor() {
     super();
     this.state = {
@@ -14,25 +12,26 @@ class CardDetailsForm extends Component {
   }
 
   componentDidMount() {
-    this.DATA = JSON.parse(localStorage.getItem('arrayRatings'));
-    console.log(localStorage.getItem('arrayRatings'));
-
-    if (localStorage.getItem('arrayRatings')) {
+    const x = localStorage.getItem('arrayRatings');
+    const data = JSON.parse(x);
+    console.log(data);
+    if (data) {
       this.setState({
-        arrayRatings: this.DATA.arrayRatings,
-      });
-    } else {
-      this.setState({
-        arrayRatings: [],
+        arrayRatings: data,
       });
     }
+    // } else {
+    //   this.setState({
+    //     arrayRatings: [],
+    //   });
+    // }
   }
 
-  componentDidUpdate() {
-    const { arrayRatings } = this.state;
-    const json = JSON.stringify(arrayRatings);
-    localStorage.setItem('arrayRatings', json);
-  }
+  // componentDidUpdate() {
+  //   const { arrayRatings } = this.state;
+  //   const json = JSON.stringify(arrayRatings);
+  //   localStorage.setItem('arrayRatings', json);
+  // }
 
   handleChange = ({ target }) => {
     const { name, value } = target;
@@ -50,7 +49,11 @@ class CardDetailsForm extends Component {
     };
     this.setState(({ arrayRatings }) => ({
       arrayRatings: [...arrayRatings, data],
-    }));
+    }), () => {
+      const { arrayRatings } = this.state;
+      const json = JSON.stringify(arrayRatings);
+      localStorage.setItem('arrayRatings', json);
+    });
   }
 
   render() {
