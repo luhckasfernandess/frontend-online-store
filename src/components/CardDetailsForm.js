@@ -27,7 +27,7 @@ class CardDetailsForm extends Component {
     }
   }
 
-  componentWillUpdate(prevProps, nextState) {
+  getSnapshotBeforeUpdate(nextProps, nextState) {
     localStorage.setItem('arrayRatings', JSON.stringify(nextState));
   }
 
