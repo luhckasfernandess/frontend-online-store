@@ -15,6 +15,27 @@ class App extends Component {
     this.addCart = this.addCart.bind(this);
   }
 
+  removeTotal = (childData) => {
+    const { itemProduct } = this.state;
+    const data = [];
+    itemProduct.forEach((item) => {
+      if (item !== childData) data.push(item);
+    });
+    this.setState({ itemProduct: data });
+  }
+
+  removeCart = (childData) => {
+    const { itemProduct } = this.state;
+    const size = itemProduct.filter((item) => item === childData).length;
+    if (size > 1) {
+      const data = itemProduct.indexOf(childData);
+      const data2 = itemProduct.splice(data, 1);
+      this.setState((prevItem) => ({
+        itemProduct: [...prevItem.itemProduct, data2],
+      }));
+    }
+  }
+
   addCart(childData) {
     // Estamos atualizando e devemos fazer o somatorio dos valores
     this.setState(({ itemProduct }) => ({ // atualiza o itemProduct
@@ -33,7 +54,6 @@ class App extends Component {
             <Home
               name="Digite algum termo de pesquisa ou escolha uma categoria."
               addCart={ this.addCart }
-              addId={ this.addId }
             />
           ) }
         />
@@ -42,6 +62,9 @@ class App extends Component {
           render={ () => (
             <Cart
               itemProduct={ itemProduct }
+              addCart={ this.addCart }
+              removeCart={ this.removeCart }
+              removeTotal={ this.removeTotal }
             />
           ) }
         />
