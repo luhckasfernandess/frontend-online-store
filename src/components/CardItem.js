@@ -31,6 +31,7 @@ class CardItem extends Component {
   onTrigger3 = (event) => {
     const { removeTotal } = this.props;
     removeTotal(event.target.parentElement.firstChild.innerText);
+    event.target.parentElement.remove();
   }
 
   countAmount = () => {
@@ -65,7 +66,6 @@ class CardItem extends Component {
           +
         </button>
         <p>{ price * quantity}</p>
-
       </div>
     );
   }

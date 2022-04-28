@@ -26,8 +26,6 @@ class Cart extends Component {
 
   fetchProducts = async () => {
     const { arrayProduct } = this.state;
-    /* const teste = await getProductDetails(arrayProduct[0]);
-    console.log(teste); */
     arrayProduct.map(async (id) => {
       const x = await getProductDetails(id);
       this.setState(({ cartProducts }) => ({ // atualiza o itemProduct
@@ -38,6 +36,7 @@ class Cart extends Component {
 
   render() {
     const { cartProducts } = this.state;
+    console.log(cartProducts);
     const { addCart, removeCart, removeTotal, itemProduct } = this.props;
     const quantity = cartProducts.length;
     const frase = (
