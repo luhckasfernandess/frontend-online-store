@@ -15,6 +15,7 @@ class CardDetailsForm extends Component {
 
   componentDidMount() {
     this.DATA = JSON.parse(localStorage.getItem('arrayRatings'));
+    console.log(localStorage.getItem('arrayRatings'));
 
     if (localStorage.getItem('arrayRatings')) {
       this.setState({
@@ -27,8 +28,10 @@ class CardDetailsForm extends Component {
     }
   }
 
-  getSnapshotBeforeUpdate(nextProps, nextState) {
-    localStorage.setItem('arrayRatings', JSON.stringify(nextState));
+  componentDidUpdate() {
+    const { arrayRatings } = this.state;
+    const json = JSON.stringify(arrayRatings);
+    localStorage.setItem('arrayRatings', json);
   }
 
   handleChange = ({ target }) => {
