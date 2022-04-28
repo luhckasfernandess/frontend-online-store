@@ -14,6 +14,7 @@ class Cart extends Component {
   }
 
   componentDidMount = async () => {
+    await this.removeDuplicate();
     this.fetchProducts();
   }
 
@@ -25,7 +26,6 @@ class Cart extends Component {
   }
 
   fetchProducts = async () => {
-    await this.removeDuplicate();
     const { arrayProduct } = this.state;
     arrayProduct.map(async (id) => {
       const x = await getProductDetails(id);
@@ -41,6 +41,9 @@ class Cart extends Component {
     const quantity = cartProducts.length;
     const frase = (
       <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+    );
+    const botao = (
+      <button type="button">Finalizar Compra</button>
     );
 
     return (
@@ -63,6 +66,7 @@ class Cart extends Component {
         >
           {quantity}
         </p>
+        {cartProducts.length === 0 ? !botao : botao }
       </div>
     );
   }
