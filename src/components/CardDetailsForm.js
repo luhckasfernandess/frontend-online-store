@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 class CardDetailsForm extends Component {
+  DATA;
+
   constructor() {
     super();
     this.state = {
@@ -25,7 +27,7 @@ class CardDetailsForm extends Component {
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillUpdate(prevProps, nextState) {
     localStorage.setItem('arrayRatings', JSON.stringify(nextState));
   }
 
@@ -43,7 +45,7 @@ class CardDetailsForm extends Component {
       rating,
       text,
     };
-    this.setState(({arrayRatings}) => ({
+    this.setState(({ arrayRatings }) => ({
       arrayRatings: [...arrayRatings, data],
     }));
   }
@@ -75,16 +77,40 @@ class CardDetailsForm extends Component {
               />
             </label>
             <label htmlFor="input-rating-2">
-              <input type="radio" value="2" name="rating" data-testid="2-rating" onChange={ this.handleChange } />
+              <input
+                type="radio"
+                value="2"
+                name="rating"
+                data-testid="2-rating"
+                onChange={ this.handleChange }
+              />
             </label>
             <label htmlFor="input-rating-3">
-              <input type="radio" value="3" name="rating" data-testid="3-rating" onChange={ this.handleChange } />
+              <input
+                type="radio"
+                value="3"
+                name="rating"
+                data-testid="3-rating"
+                onChange={ this.handleChange }
+              />
             </label>
             <label htmlFor="input-rating-4">
-              <input type="radio" value="4" name="rating" data-testid="4-rating" onChange={ this.handleChange } />
+              <input
+                type="radio"
+                value="4"
+                name="rating"
+                data-testid="4-rating"
+                onChange={ this.handleChange }
+              />
             </label>
             <label htmlFor="input-rating-5">
-              <input type="radio" value="5" name="rating" data-testid="5-rating" onChange={ this.handleChange } />
+              <input
+                type="radio"
+                value="5"
+                name="rating"
+                data-testid="5-rating"
+                onChange={ this.handleChange }
+              />
             </label>
           </div>
           <label htmlFor="input-text">
@@ -97,7 +123,13 @@ class CardDetailsForm extends Component {
               onChange={ this.handleChange }
             />
           </label>
-          <button type="button" data-testid="submit-review-btn" onClick={ this.handleSummit }>Avaliar</button>
+          <button
+            type="button"
+            data-testid="submit-review-btn"
+            onClick={ this.handleSummit }
+          >
+            Avaliar
+          </button>
         </form>
         {arrayRatings.map((item, index) => (
           <div key={ index }>
