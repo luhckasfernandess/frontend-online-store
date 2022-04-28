@@ -17,7 +17,10 @@ class Card extends Component {
         {arrayProduct.map((item) => (
           <section key={ item.id } data-testid="product">
             <span>{item.id}</span>
-            <Link to={ `/CardDetails/${item.id}` } data-testid="product-detail-link">
+            <Link
+              to={ `/CardDetails/${item.id}` }
+              data-testid="product-detail-link"
+            >
               <img src={ item.thumbnail } alt={ item.title } />
             </Link>
             <p>{ item.title }</p>
