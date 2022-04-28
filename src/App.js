@@ -11,7 +11,6 @@ class App extends Component {
     this.state = {
       itemProduct: [],
     };
-
     this.addCart = this.addCart.bind(this);
   }
 
@@ -30,8 +29,10 @@ class App extends Component {
     if (size > 1) {
       const data = itemProduct.indexOf(childData);
       const data2 = itemProduct.splice(data, 1);
-      this.setState((prevItem) => ({
-        itemProduct: [...prevItem.itemProduct, data2],
+      const data3 = itemProduct;
+      console.log(data2);
+      this.setState(() => ({
+        itemProduct: data3,
       }));
     }
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getProductDetails } from '../services/api';
 import CardItem from '../components/CardItem';
+import './Cart.css';
 
 class Cart extends Component {
   constructor() {
@@ -13,18 +14,18 @@ class Cart extends Component {
   }
 
   componentDidMount = async () => {
-    await this.removeDuplicate();
     this.fetchProducts();
   }
 
   removeDuplicate = () => {
     const { itemProduct } = this.props;
     const data = itemProduct
-      .filter((item, index, array) => array.indexOf(item) === index);
+      .filter((item, i, array) => array.indexOf(item) === i);
     this.setState({ arrayProduct: data });
   }
 
   fetchProducts = async () => {
+    await this.removeDuplicate();
     const { arrayProduct } = this.state;
     arrayProduct.map(async (id) => {
       const x = await getProductDetails(id);
@@ -36,7 +37,6 @@ class Cart extends Component {
 
   render() {
     const { cartProducts } = this.state;
-    console.log(cartProducts);
     const { addCart, removeCart, removeTotal, itemProduct } = this.props;
     const quantity = cartProducts.length;
     const frase = (
@@ -57,7 +57,12 @@ class Cart extends Component {
             />
           </div>
         ))}
-        <p data-testid="shopping-cart-product-quantity">{quantity}</p>
+        <p
+          className="quantity"
+          data-testid="shopping-cart-product-quantity"
+        >
+          {quantity}
+        </p>
       </div>
     );
   }

@@ -46,26 +46,39 @@ class CardItem extends Component {
 
     return (
       <div className={ styles.container }>
-        <span>{id}</span>
-        <button type="button" onClick={ this.onTrigger3 }>x</button>
+        <span className={ styles.idItem }>{id}</span>
+        <button
+          className={ styles.button }
+          type="button"
+          onClick={ this.onTrigger3 }
+        >
+          x
+        </button>
         <img src={ thumbnail } alt={ title } />
-        <h2 data-testid="shopping-cart-product-name">{ title }</h2>
+        <h4
+          className={ styles.title }
+          data-testid="shopping-cart-product-name"
+        >
+          { title }
+        </h4>
         <button
           type="button"
           data-testid=" product-decrease-quantity"
           onClick={ this.onTrigger2 }
+          className={ styles.button }
         >
           -
         </button>
-        <span>{quantity}</span>
+        <span className={ styles.quantity }>{quantity}</span>
         <button
           type="button"
           data-testid=" product-increase-quantity"
           onClick={ this.onTrigger }
+          className={ styles.button }
         >
           +
         </button>
-        <p>{ price * quantity}</p>
+        <p>{ `R$ ${price * quantity}`}</p>
       </div>
     );
   }
