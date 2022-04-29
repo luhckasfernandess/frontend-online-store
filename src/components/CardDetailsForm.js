@@ -12,19 +12,17 @@ class CardDetailsForm extends Component {
   }
 
   componentDidMount() {
-    const x = localStorage.getItem('arrayRatings');
+    const x = localStorage.getItem('arrayRating');
     const data = JSON.parse(x);
-    console.log(data);
     if (data) {
       this.setState({
         arrayRatings: data,
       });
+    } else {
+      this.setState({
+        arrayRatings: [],
+      });
     }
-    // } else {
-    //   this.setState({
-    //     arrayRatings: [],
-    //   });
-    // }
   }
 
   // componentDidUpdate() {
@@ -52,7 +50,7 @@ class CardDetailsForm extends Component {
     }), () => {
       const { arrayRatings } = this.state;
       const json = JSON.stringify(arrayRatings);
-      localStorage.setItem('arrayRatings', json);
+      localStorage.setItem('arrayRating', json);
     });
   }
 
@@ -137,13 +135,15 @@ class CardDetailsForm extends Component {
             Avaliar
           </button>
         </form>
-        {arrayRatings.map((item, index) => (
-          <div key={ index }>
-            <p>{ item.email }</p>
-            <p>{ item.rating }</p>
-            <p>{ item.text }</p>
-          </div>
-        ))}
+        <div>
+          {arrayRatings.map((item, index) => (
+            <div key={ index }>
+              <p>{ item.email }</p>
+              <p>{ item.rating }</p>
+              <p>{ item.text }</p>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

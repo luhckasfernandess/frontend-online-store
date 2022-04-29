@@ -46,9 +46,11 @@ class Home extends Component {
     });
   }
 
-  handlerRadio = async (event) => {
-    await this.handlerChange(event);
-    this.handlerClick();
+  handlerRadio = (event) => {
+    this.handlerChange(event);
+    setTimeout(() => {
+      this.handlerClick();
+    }, 1);
   }
 
   render() {
@@ -83,7 +85,11 @@ class Home extends Component {
           </div>
           { fraseIncial ? frase : !frase }
           { loading ? loadingElement : !loadingElement }
-          <Card arrayProduct={ arrayProduct } addCart={ addCart } />
+          { arrayProduct.map((item) => (
+            <div key={ item.id }>
+              <Card item={ item } addCart={ addCart } />
+            </div>
+          )) }
         </form>
         <aside>
           {arrayCategoria.map((item) => (

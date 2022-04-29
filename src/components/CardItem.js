@@ -7,46 +7,73 @@ class CardItem extends Component {
     super();
 
     this.state = {
-      quantity: '',
+      quantity: 0,
     };
   }
 
   componentDidMount = () => {
-    this.countAmount();
+    this.countAmountInitial();
   }
 
-  onTrigger = async (event) => {
-    const { addCart } = this.props;
-    await addCart(event.target.parentElement.firstChild.innerText);
-    this.countAmount();
+  // onTriggerAdd = () => {
+  //   const { addCart, teste } = this.props;
+  //   addCart(teste);
+  // }
+
+  // onTriggerRemove = () => {
+  //   const { removeCart, teste } = this.props;
+  //   removeCart(teste);
+  // }
+
+  // onTriggerRemoveTotal = () => {
+  //   const { removeTotal, teste } = this.props;
+  //   removeTotal(teste);
+  // }
+
+  onTriggerFunction = (teste, callback) => {
+    callback(teste);
   }
 
-  onTrigger2 = async (event) => {
-    const { removeCart } = this.props;
-    const data = event.target.parentElement.firstChild.innerText;
-    await removeCart(data);
-    this.countAmount();
+  onTrigger = () => {
+    const { addCart, teste } = this.props;
+    this.setState((prevState) => ({
+      quantity: prevState.quantity + 1,
+    }));
+    this.onTriggerFunction(teste, addCart);
+  }
+
+  onTrigger2 = () => {
+    const { removeCart, teste } = this.props;
+    const { quantity } = this.state;
+    if (quantity > 1) {
+      this.setState((prevState) => ({
+        quantity: prevState.quantity - 1,
+      }));
+      this.onTriggerFunction(teste, removeCart);
+    }
   }
 
   onTrigger3 = (event) => {
-    const { removeTotal } = this.props;
-    removeTotal(event.target.parentElement.firstChild.innerText);
+    const { removeTotal, teste } = this.props;
+    this.setState({
+      quantity: 0,
+    });
     event.target.parentElement.remove();
+    this.onTriggerFunction(teste, removeTotal);
   }
 
-  countAmount = () => {
-    const { itemProduct, id } = this.props;
-    const data = itemProduct.filter((item) => item === id).length;
+  countAmountInitial = () => {
+    const { itemProduct, teste } = this.props;
+    const data = itemProduct.filter((item) => item.id === teste.id).length;
     this.setState({ quantity: data });
   }
 
   render() {
-    const { title, id, thumbnail, price } = this.props;
+    const { teste: { title, thumbnail, price } } = this.props;
     const { quantity } = this.state;
 
     return (
       <div className={ styles.container }>
-        <span className={ styles.idItem }>{id}</span>
         <button
           className={ styles.button }
           type="button"
@@ -55,12 +82,12 @@ class CardItem extends Component {
           x
         </button>
         <img src={ thumbnail } alt={ title } />
-        <h4
+        <p
           className={ styles.title }
           data-testid="shopping-cart-product-name"
         >
           { title }
-        </h4>
+        </p>
         <button
           type="button"
           data-testid=" product-decrease-quantity"
@@ -69,7 +96,12 @@ class CardItem extends Component {
         >
           -
         </button>
-        <span className={ styles.quantity }>{quantity}</span>
+        <span
+          data-testid="shopping-cart-product-quantity"
+          className={ styles.quantity }
+        >
+          {quantity}
+        </span>
         <button
           type="button"
           data-testid=" product-increase-quantity"
@@ -85,14 +117,11 @@ class CardItem extends Component {
 }
 
 CardItem.propTypes = {
-  itemProduct: PropTypes.arrayOf(PropTypes.string).isRequired,
+  itemProduct: PropTypes.arrayOf(PropTypes.object).isRequired,
+  teste: PropTypes.objectOf(PropTypes.any).isRequired,
   addCart: PropTypes.func.isRequired,
   removeCart: PropTypes.func.isRequired,
   removeTotal: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired,
-  thumbnail: PropTypes.string.isRequired,
 };
 
 export default CardItem;
