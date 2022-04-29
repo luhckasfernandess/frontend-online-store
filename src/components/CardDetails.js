@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Icon from '../img/Cart.svg';
 import { getProductDetails } from '../services/api';
 import CardDetailsForm from './CardDetailsForm';
+import './CardDetails.css';
 
 class CardDetails extends Component {
   constructor() {
@@ -23,18 +24,18 @@ class CardDetails extends Component {
     this.setState({ objectDetails: data });
   }
 
-  onTrigger = (event) => {
+  onTrigger = () => {
+    const { objectDetails } = this.state;
     const { addCart } = this.props;
-    addCart(event.target.parentElement.firstChild.innerText);
+    addCart(objectDetails);
   }
 
   render() {
-    const { objectDetails: { title, id } } = this.state;
+    const { objectDetails } = this.state;
     return (
       <div>
-        <p data-testid="product-detail-name">{title}</p>
+        <p data-testid="product-detail-name">{objectDetails.title}</p>
         <div>
-          <p>{id}</p>
           <button
             type="button"
             data-testid="product-detail-add-to-cart"

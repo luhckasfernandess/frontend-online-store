@@ -14,18 +14,25 @@ class App extends Component {
     this.addCart = this.addCart.bind(this);
   }
 
+  saveLocalStorage = () => {
+    const { itemProduct } = this.state;
+    const json = JSON.stringify(itemProduct);
+    localStorage.setItem('itemProduct', json);
+  }
+
   removeTotal = (childData) => {
     const { itemProduct } = this.state;
     const data = [];
     itemProduct.forEach((item) => {
-      if (item !== childData) data.push(item);
+      if (item.id !== childData.id) data.push(item);
     });
     this.setState({ itemProduct: data });
+    this.saveLocalStorage();
   }
 
   removeCart = (childData) => {
     const { itemProduct } = this.state;
-    const size = itemProduct.filter((item) => item === childData).length;
+    const size = itemProduct.filter((item) => item.id === childData.id).length;
     if (size > 1) {
       const data = itemProduct.indexOf(childData);
       const data2 = itemProduct.splice(data, 1);
@@ -35,13 +42,15 @@ class App extends Component {
         itemProduct: data3,
       }));
     }
+    this.saveLocalStorage();
   }
 
-  addCart(childData) {
+  async addCart(childData) {
     // Estamos atualizando e devemos fazer o somatorio dos valores
-    this.setState(({ itemProduct }) => ({ // atualiza o itemProduct
+    await this.setState(({ itemProduct }) => ({ // atualiza o itemProduct
       itemProduct: [...itemProduct, childData], // soma com o childData
     }));
+    this.saveLocalStorage();
   }
 
   render() {
