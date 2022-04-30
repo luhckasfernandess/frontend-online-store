@@ -1,0 +1,47 @@
+.header {
+  align-items: center;
+  background-color: #2264d1;
+  display: flex;
+  justify-content: space-between;
+  min-height: 4rem;
+  position: fixed;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo {
+  align-items: center;
+  color: white;
+  display: flex;
+  font-size: 36px;
+  font-weight: 500;
+  gap: 4px;
+  height: 100%;
+  justify-content: center;
+  margin-left: 16px;
+  transition: filter 0.2s;
+}
+
+.logo:hover {
+  filter: brightness(0.9);
+}
+
+.logo span {
+  align-items: center;
+  background: linear-gradient(90deg, #2979ff 0%, #4c589e 100%);
+  border-radius: 6px;
+  color: white;
+  display: flex;
+  font-size: 32px;
+  font-weight: 700;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.cart {
+  margin-right: 16px;
+}

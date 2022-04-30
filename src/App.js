@@ -3,6 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import CardDetails from './components/CardDetails';
+import Header from './components/Header';
+import styles from './App.module.css';
 
 class App extends Component {
   constructor() {
@@ -57,37 +59,40 @@ class App extends Component {
     const { itemProduct } = this.state;
     return (
       <BrowserRouter>
-        <Route
-          exact
-          path="/"
-          render={ () => (
-            <Home
-              name="Digite algum termo de pesquisa ou escolha uma categoria."
-              addCart={ this.addCart }
-            />
-          ) }
-        />
-        <Route
-          path="/cart"
-          render={ () => (
-            <Cart
-              itemProduct={ itemProduct }
-              addCart={ this.addCart }
-              removeCart={ this.removeCart }
-              removeTotal={ this.removeTotal }
-            />
-          ) }
-        />
-        <Route
-          path="/CardDetails/:id"
-          render={ (props) => (
-            <CardDetails
-              { ...props }
-              addCart={ this.addCart }
-              itemProduct={ itemProduct }
-            />
-          ) }
-        />
+        <Header />
+        <main className={ styles.main }>
+          <Route
+            exact
+            path="/"
+            render={ () => (
+              <Home
+                name="Digite algum termo de pesquisa ou escolha uma categoria."
+                addCart={ this.addCart }
+              />
+            ) }
+          />
+          <Route
+            path="/cart"
+            render={ () => (
+              <Cart
+                itemProduct={ itemProduct }
+                addCart={ this.addCart }
+                removeCart={ this.removeCart }
+                removeTotal={ this.removeTotal }
+              />
+            ) }
+          />
+          <Route
+            path="/CardDetails/:id"
+            render={ (props) => (
+              <CardDetails
+                { ...props }
+                addCart={ this.addCart }
+                itemProduct={ itemProduct }
+              />
+            ) }
+          />
+        </main>
       </BrowserRouter>
     );
   }

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import Icon from '../img/Cart.svg';
 import { getProductDetails } from '../services/api';
 import CardDetailsForm from './CardDetailsForm';
 import './CardDetails.css';
@@ -43,9 +41,6 @@ class CardDetails extends Component {
           >
             Adicionar ao carrinho
           </button>
-          <Link to="/cart" data-testid="shopping-cart-button">
-            <img src={ Icon } alt="icon" />
-          </Link>
         </div>
         <CardDetailsForm />
       </div>
