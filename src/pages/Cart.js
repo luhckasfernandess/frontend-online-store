@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CardItem from '../components/CardItem';
-import './Cart.css';
+import styles from './Cart.module.css';
 
 class Cart extends Component {
   constructor() {
@@ -44,27 +44,35 @@ class Cart extends Component {
     const { arrayProduct } = this.state;
     const { addCart, removeCart, removeTotal, itemProduct } = this.props;
     const frase = (
-      <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+      <span
+        data-testid="shopping-cart-empty-message"
+        className={ styles.message }
+      >
+        Seu carrinho está vazio...
+      </span>
     );
     const botao = (
       <button type="button">Finalizar Compra</button>
     );
 
     return (
-      <div>
+      <div className={ styles.container }>
         {arrayProduct.length === 0 ? frase : !frase }
-        {arrayProduct.map((element, index) => (
-          <div key={ index }>
+        <div>
+          {arrayProduct.map((element, index) => (
             <CardItem
               teste={ element }
               addCart={ addCart }
               removeCart={ removeCart }
               removeTotal={ removeTotal }
               itemProduct={ itemProduct }
+              key={ index }
             />
-          </div>
-        ))}
-        {arrayProduct.length === 0 ? !botao : botao }
+          ))}
+        </div>
+        <div className={ styles.finishCart }>
+          {arrayProduct.length === 0 ? !botao : botao }
+        </div>
       </div>
     );
   }
