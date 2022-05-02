@@ -5,9 +5,17 @@
   text-align: center;
 }
 
-.container .message {
-  font-size: 34px;
-  margin-top: 30%;
+.container .productCart {
+  width: 100%;
+}
+
+.message {
+  margin-top: 35%;
+  text-align: center;
+}
+
+.message span {
+  font-size: 32px;
 }
 
 .finishCart {
@@ -21,11 +29,11 @@
   background-color: white;
   border: 1px solid #9dc2ff;
   color: #2264d1;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   height: 52px;
   transition: all 0.9s;
-  width: 300px;
+  width: 50%;
 }
 
 .finishCart button:hover {

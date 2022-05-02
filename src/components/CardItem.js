@@ -72,9 +72,7 @@ class CardItem extends Component {
   render() {
     const { teste: { title, thumbnail, price } } = this.props;
     const { quantity } = this.state;
-
     const priceQuanty = parseFloat(price.toFixed(2));
-
     return (
       <div className={ styles.container }>
         <div className={ styles.div1 }>

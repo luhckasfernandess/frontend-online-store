@@ -7,10 +7,13 @@
 .aside {
   display: flex;
   flex-direction: column;
-  max-width: 320px;
+  height: 100vh;
+  overflow: overlay;
   padding: 12px 1px 32px 12px;
   position: fixed;
+  width: 280px;
 }
+
 
 .aside .title {
   align-items: center;
@@ -22,12 +25,13 @@
   font-size: 16px;
   font-weight: 600;
   gap: 12px;
-  height: 2.34rem;
+  height: 56px;
   justify-content: center;
   line-height: 1.5rem;
   margin-bottom: 36px;
   padding-right: 0.834rem;
   text-transform: none;
+  width: 193px;
 }
 
 .aside label {
@@ -84,6 +88,6 @@
 .cards {
   display: grid;
   grid-gap: 16px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   margin-top: 20px;
 }

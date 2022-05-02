@@ -19,8 +19,8 @@ class Home extends Component {
     };
   }
 
-  componentDidMount = () => {
-    this.getApiCategoria();
+  componentDidMount = async () => {
+    await this.getApiCategoria();
     this.getApiProducts();
   }
 
@@ -73,7 +73,7 @@ class Home extends Component {
             >
               <input
                 type="radio"
-                onClick={ this.handlerRadio }
+                onChange={ this.handlerRadio }
                 value={ item.id }
                 name="categoria"
               />

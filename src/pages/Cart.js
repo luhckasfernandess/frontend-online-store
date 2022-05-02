@@ -11,7 +11,7 @@ class Cart extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     // this.getSavedStorage();
     this.removeDuplicate();
   }
@@ -44,36 +44,40 @@ class Cart extends Component {
     const { arrayProduct } = this.state;
     const { addCart, removeCart, removeTotal, itemProduct } = this.props;
     const frase = (
-      <span
-        data-testid="shopping-cart-empty-message"
-        className={ styles.message }
-      >
-        Seu carrinho está vazio...
-      </span>
+      <div className={ styles.message }>
+        <span
+          data-testid="shopping-cart-empty-message"
+        >
+          Seu carrinho está vazio...
+        </span>
+      </div>
     );
+
     const botao = (
-      <button type="button">Finalizar Compra</button>
+      <div className={ styles.finishCart }>
+        <button type="button">Finalizar Compra</button>
+      </div>
     );
 
     return (
-      <div className={ styles.container }>
-        {arrayProduct.length === 0 ? frase : !frase }
-        <div>
-          {arrayProduct.map((element, index) => (
-            <CardItem
-              teste={ element }
-              addCart={ addCart }
-              removeCart={ removeCart }
-              removeTotal={ removeTotal }
-              itemProduct={ itemProduct }
-              key={ index }
-            />
-          ))}
+      <>
+        {arrayProduct.length === 0 || itemProduct.length === 0 ? frase : !frase }
+        <div className={ styles.container }>
+          <div className={ styles.productCart }>
+            {arrayProduct.map((element, index) => (
+              <CardItem
+                teste={ element }
+                addCart={ addCart }
+                removeCart={ removeCart }
+                removeTotal={ removeTotal }
+                itemProduct={ itemProduct }
+                key={ index }
+              />
+            ))}
+          </div>
+          {arrayProduct.length === 0 || itemProduct.length === 0 ? !botao : botao }
         </div>
-        <div className={ styles.finishCart }>
-          {arrayProduct.length === 0 ? !botao : botao }
-        </div>
-      </div>
+      </>
     );
   }
 }
