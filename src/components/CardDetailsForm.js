@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './CardDetailsForm.module.css';
 
 class CardDetailsForm extends Component {
   constructor() {
@@ -58,7 +59,7 @@ class CardDetailsForm extends Component {
     const { arrayRatings, email, text } = this.state;
     return (
       <div>
-        <form>
+        <form className={ styles.container }>
           <label htmlFor="input-email">
             <input
               type="email"
