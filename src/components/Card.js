@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Card.css';
 import PropTypes from 'prop-types';
+import styles from './Card.module.css';
 
 class Card extends Component {
   constructor() {
@@ -17,7 +17,7 @@ class Card extends Component {
   render() {
     const { item } = this.props;
     return (
-      <section data-testid="product">
+      <div data-testid="product" className={ styles.card }>
         <Link
           to={ `/CardDetails/${item.id}` }
           data-testid="product-detail-link"
@@ -25,7 +25,7 @@ class Card extends Component {
           <img src={ item.thumbnail } alt={ item.title } />
         </Link>
         <p>{ item.title }</p>
-        <span>{ item.price }</span>
+        <span>{ `R$ ${item.price}` }</span>
         <button
           data-testid="product-add-to-cart"
           type="button"
@@ -33,7 +33,7 @@ class Card extends Component {
         >
           Adicionar ao Carrinho
         </button>
-      </section>
+      </div>
     );
   }
 }

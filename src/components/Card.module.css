@@ -1,0 +1,47 @@
+div {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: space-between;
+  padding: 16px;
+  transition: 0.5s ease-in;
+}
+
+.card:hover {
+  border-radius: 10px;
+  box-shadow: 1px 4px 10px #b4bbe2 , 1px 2px 10px #d2d6ed;
+}
+
+.card a img {
+  height: 150px;
+  object-fit: contain;
+  width: 100%;
+}
+
+.card button {
+  background-color: white;
+  border: 1px solid #9dc2ff;
+  color: #2264d1;
+  cursor: pointer;
+  height: 32px;
+  outline: 0;
+  transition: filter 0.9s;
+}
+
+.card button:hover {
+  filter: brightness(0.9);
+}
+
+.card p {
+  font-weight: 400;
+}
+
+.card span {
+  font-size: 20px;
+  font-weight: 700;
+}

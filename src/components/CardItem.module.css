@@ -1,7 +1,99 @@
 .container {
-  width: 30%;
+  border-bottom: 1px solid #9dc2ff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-height: 172px;
+  transition: ease-in 0.2s;
 }
 
-.container img {
-  width: 100%;
+.container:first-child {
+  border-top: 1px solid #9dc2ff;
+}
+
+.container .div1 {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.container .div1 img {
+  height: 92px;
+  object-fit: contain;
+}
+
+.container .div1 div {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
+}
+
+.container .div2 span {
+  color: #3a3a44;
+  font-size: 34px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.container .div1 div span {
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.container .div2 button {
+  align-self: flex-end;
+  background-color: white;
+  border: 0;
+  margin-right: 20px;
+  margin-top: 20px;
+  width: 0;
+}
+
+.container .div1 div button {
+  background-color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  height: 32px;
+  margin-bottom: 20px;
+  transition: filter 0.9s;
+  width: 32px;
+}
+
+.container .div1 div button:hover {
+  filter: brightness(0.9);
+}
+
+
+.container .div1 div .buttonAdd {
+  border: 1px solid #a9d3ab;
+  color: #37833b;
+}
+
+.container .div1 div .buttonMin {
+  border: 1px solid #faa9a3;
+  color: red;
+}
+
+.container .div2 {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+}
+
+.container .div2 p {
+  align-self: flex-start;
+  color: #3a3a44;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.container .div2 button img:hover {
+  color: red;
+  cursor: pointer;
+  transform: translateY(-2px);
 }

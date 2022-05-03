@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import Icon from '../img/Cart.svg';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Card from '../components/Card';
-import './Home.css';
+import styles from './Home.module.css';
+import Search from '../img/Search.svg';
+import Categories from '../img/Categories.svg';
 
 class Home extends Component {
   constructor() {
@@ -19,8 +19,8 @@ class Home extends Component {
     };
   }
 
-  componentDidMount = () => {
-    this.getApiCategoria();
+  componentDidMount = async () => {
+    await this.getApiCategoria();
     this.getApiProducts();
   }
 
@@ -59,56 +59,58 @@ class Home extends Component {
     const frase = <span data-testid="home-initial-message">{name}</span>;
     const loadingElement = <span>Loading...</span>;
     return (
-      <main className="main">
-        <form>
-          <div>
-            <label htmlFor="input-search">
-              <input
-                type="text"
-                onChange={ this.handlerChange }
-                name="product"
-                value={ product }
-                data-testid="query-input"
-              />
-            </label>
-            <label htmlFor="input-button">
-              <input
-                type="button"
-                data-testid="query-button"
-                onClick={ this.handlerClick }
-                value="Search"
-              />
-            </label>
-            <Link to="/cart" data-testid="shopping-cart-button">
-              <img src={ Icon } alt="icon" />
-            </Link>
-          </div>
-          { fraseIncial ? frase : !frase }
-          { loading ? loadingElement : !loadingElement }
-          { arrayProduct.map((item) => (
-            <div key={ item.id }>
-              <Card item={ item } addCart={ addCart } />
-            </div>
-          )) }
-        </form>
-        <aside>
+      <section className={ styles.main }>
+        <aside className={ styles.aside }>
+          <h2 className={ styles.title }>
+            <img src={ Categories } alt="Categories" />
+            Categories
+          </h2>
           {arrayCategoria.map((item) => (
             <label
-              htmlFor="input-radio"
+              htmlFor={ `${item.id}` }
               key={ item.id }
               data-testid="category"
             >
               <input
                 type="radio"
-                onClick={ this.handlerRadio }
+                onChange={ this.handlerRadio }
                 value={ item.id }
+                id={ `${item.id}` }
                 name="categoria"
               />
               <span>{item.name}</span>
             </label>
           ))}
         </aside>
-      </main>
+
+        <div className={ styles.form }>
+          <div className={ styles.input }>
+            <button
+              type="button"
+              data-testid="query-button"
+              onClick={ this.handlerClick }
+              value="Search"
+            >
+              <img src={ Search } alt="pesquisar" />
+            </button>
+            <input
+              type="text"
+              onChange={ this.handlerChange }
+              name="product"
+              value={ product }
+              data-testid="query-input"
+              placeholder="Search"
+            />
+          </div>
+          { fraseIncial ? frase : !frase }
+          { loading ? loadingElement : !loadingElement }
+          <div className={ styles.cards }>
+            { arrayProduct.map((item, index) => (
+              <Card item={ item } addCart={ addCart } key={ index } />
+            )) }
+          </div>
+        </div>
+      </section>
     );
   }
 }

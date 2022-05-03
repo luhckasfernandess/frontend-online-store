@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CardItem from '../components/CardItem';
-import './Cart.css';
+import styles from './Cart.module.css';
 
 class Cart extends Component {
   constructor() {
@@ -11,7 +11,7 @@ class Cart extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     // this.getSavedStorage();
     this.removeDuplicate();
   }
@@ -44,28 +44,41 @@ class Cart extends Component {
     const { arrayProduct } = this.state;
     const { addCart, removeCart, removeTotal, itemProduct } = this.props;
     const frase = (
-      <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
-    );
-    const botao = (
-      <button type="button">Finalizar Compra</button>
+      <div className={ styles.message }>
+        <span
+          data-testid="shopping-cart-empty-message"
+        >
+          Seu carrinho está vazio...
+        </span>
+      </div>
     );
 
     return (
-      <div>
-        {arrayProduct.length === 0 ? frase : !frase }
-        {arrayProduct.map((element, index) => (
-          <div key={ index }>
-            <CardItem
-              teste={ element }
-              addCart={ addCart }
-              removeCart={ removeCart }
-              removeTotal={ removeTotal }
-              itemProduct={ itemProduct }
-            />
+      <>
+        {arrayProduct.length === 0 || itemProduct.length === 0
+          ? frase : !frase }
+        <div className={ styles.container }>
+          <div className={ styles.productCart }>
+            {arrayProduct.map((element, index) => (
+              <CardItem
+                teste={ element }
+                addCart={ addCart }
+                removeCart={ removeCart }
+                removeTotal={ removeTotal }
+                itemProduct={ itemProduct }
+                key={ index }
+              />
+            ))}
           </div>
-        ))}
-        {arrayProduct.length === 0 ? !botao : botao }
-      </div>
+          <footer className={ styles.finishCart }>
+            <h2>
+              Total R$:
+              <span>{ 0.00 }</span>
+            </h2>
+            <button type="button">Finalizar Compra</button>
+          </footer>
+        </div>
+      </>
     );
   }
 }

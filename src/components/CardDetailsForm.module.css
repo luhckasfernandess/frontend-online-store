@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.container h1 {
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.container form .description, .container form .email {
+  display: flex;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.container form label input {
+  border-radius: 10px;
+  height: 40px;
+  outline: none;
+  padding: 0 0.5rem;
+  width: 100%;
+}
+
+.container form button {
+  cursor: pointer;
+  height: 50px;
+  margin-top: 10px;
+  width: 50%;
+}
+
+.container .cardAvaliation {
+  height: 100%;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.container .cardAvaliation div {
+  align-items: flex-start;
+  border: 1px solid #4a4a4a;
+  border-radius: 10px;
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.container .cardAvaliation div h4 {
+  color: #4a4a4a;
+  font-size: 24px;
+  font-weight: 700;
+}
