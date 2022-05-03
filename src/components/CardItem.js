@@ -98,7 +98,7 @@ class CardItem extends Component {
               onClick={ this.onTrigger2 }
               className={ styles.buttonMin }
             >
-              -
+              +
             </button>
           </div>
         </div>
