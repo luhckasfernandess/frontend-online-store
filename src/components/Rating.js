@@ -37,12 +37,11 @@ class Rating extends Component {
               onClick={ () => this.setRating(ratingValue + index) }
             />
             <FaStar
-              size="24"
+              size="32"
               color={ (ratingValue + index) <= rating ? '#ffc107' : '#e4e5e9' }
               className={ styles.star }
             />
           </label>
-
         ))}
       </div>
     );

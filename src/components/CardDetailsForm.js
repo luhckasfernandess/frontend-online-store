@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import styles from './CardDetailsForm.module.css';
 import Rating from './Rating';
 
@@ -8,9 +8,10 @@ class CardDetailsForm extends Component {
     this.state = {
       arrayRatings: [],
       email: '',
-      rating: '',
+      rating: [],
       text: '',
     };
+    this.myRef = createRef();
   }
 
   componentDidMount() {
@@ -75,7 +76,11 @@ class CardDetailsForm extends Component {
             />
           </label>
           <div>
-            <Rating handleChange={ this.handleChange } rating={ rating } />
+            <Rating
+              ref={ this.myRef }
+              handleChange={ this.handleChange }
+              rating={ rating }
+            />
           </div>
           <label htmlFor="input-text" className={ styles.description }>
             <input
@@ -94,12 +99,12 @@ class CardDetailsForm extends Component {
             Avaliar
           </button>
         </form>
-        <div>
+        <div className={ styles.cardAvaliation }>
           {arrayRatings.map((item, index) => (
             <div key={ index }>
-              <p>{ item.email }</p>
+              <h4>{ item.email }</h4>
               <p>{ item.rating }</p>
-              <p>{ item.text }</p>
+              <span>{ item.text }</span>
             </div>
           ))}
         </div>

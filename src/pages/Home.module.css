@@ -47,6 +47,10 @@
   transition: 0.5s ease-in;
 }
 
+.aside label input {
+  display: none;
+}
+
 .aside label:hover {
   background-color: #cacddb;
   color: #485fc7;

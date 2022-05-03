@@ -1,6 +1,7 @@
 .ratting {
   display: flex;
   flex-direction: row;
+  margin: 1rem 0;
 }
 
 .ratting label input {

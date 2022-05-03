@@ -32,3 +32,26 @@
   margin-top: 10px;
   width: 50%;
 }
+
+.container .cardAvaliation {
+  height: 100%;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.container .cardAvaliation div {
+  align-items: flex-start;
+  border: 1px solid #4a4a4a;
+  border-radius: 10px;
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.container .cardAvaliation div h4 {
+  color: #4a4a4a;
+  font-size: 24px;
+  font-weight: 700;
+}
