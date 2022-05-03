@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getProductDetails } from '../services/api';
 import CardDetailsForm from '../components/CardDetailsForm';
@@ -15,7 +15,7 @@ class CardDetails extends Component {
       atributos: [],
       objectDetails: {},
     };
-    this.myRef = createRef();
+    // this.myRef = createRef();
   }
 
   componentDidMount = async () => {
@@ -40,16 +40,16 @@ class CardDetails extends Component {
     addCart(objectDetails);
   }
 
-  handleLeftClick = (event) => {
-    event.preventDefault();
-    const { current } = this.myRef;
-    current.scrollLeft -= current.offsetWidth;
+  handleLeftClick = () => {
+    // event.preventDefault();
+    // const { current } = this.myRef;
+    // current.scrollLeft -= current.offsetWidth;
   }
 
-  handleRightClick = (event) => {
-    event.preventDefault();
-    const { current } = this.myRef;
-    current.scrollLeft += current.offsetWidth;
+  handleRightClick = () => {
+    // event.preventDefault();
+    // const { current } = this.myRef;
+    // current.scrollLeft += current.offsetWidth;
   }
 
   render() {

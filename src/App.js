@@ -37,9 +37,8 @@ class App extends Component {
     const size = itemProduct.filter((item) => item.id === childData.id).length;
     if (size > 1) {
       const data = itemProduct.indexOf(childData);
-      const data2 = itemProduct.splice(data, 1);
+      itemProduct.splice(data, 1);
       const data3 = itemProduct;
-      console.log(data2);
       this.setState(() => ({
         itemProduct: data3,
       }));
