@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { getProductDetails } from '../services/api';
 import CardDetailsForm from '../components/CardDetailsForm';
 import styles from './Detalhes.module.css';
-import Left from '../img/circle-left.svg';
+import Left from '../img/circleLeft.svg';
 import Right from '../img/circleRight.svg';
 
 class CardDetails extends Component {
   constructor() {
     super();
     this.state = {
-      titulo: '',
+      objectDetails: {},
       imagens: [],
       atributos: [],
-      objectDetails: {},
     };
-    // this.myRef = createRef();
+    this.myRef = createRef();
   }
 
   componentDidMount = async () => {
@@ -25,12 +24,10 @@ class CardDetails extends Component {
   productDetails = async () => {
     const { match: { params: { id } } } = this.props;
     const data = await getProductDetails(id);
-    const { pictures, title, attributes } = data;
     this.setState({
-      titulo: title,
-      imagens: pictures,
-      atributos: attributes,
       objectDetails: data,
+      imagens: data.pictures,
+      atributos: data.attributes,
     });
   }
 
@@ -40,20 +37,20 @@ class CardDetails extends Component {
     addCart(objectDetails);
   }
 
-  handleLeftClick = () => {
-    // event.preventDefault();
-    // const { current } = this.myRef;
-    // current.scrollLeft -= current.offsetWidth;
+  handleLeftClick = (event) => {
+    event.preventDefault();
+    const { current } = this.myRef;
+    current.scrollLeft -= current.offsetWidth;
   }
 
-  handleRightClick = () => {
-    // event.preventDefault();
-    // const { current } = this.myRef;
-    // current.scrollLeft += current.offsetWidth;
+  handleRightClick = (event) => {
+    event.preventDefault();
+    const { current } = this.myRef;
+    current.scrollLeft += current.offsetWidth;
   }
 
   render() {
-    const { titulo, imagens, atributos, objectDetails } = this.state;
+    const { imagens, atributos, objectDetails } = this.state;
     return (
       <section className={ styles.section }>
         <div className={ styles.container }>
@@ -62,7 +59,7 @@ class CardDetails extends Component {
             className={ styles.ProductTitle }
             data-testid="product-detail-name"
           >
-            { titulo }
+            { objectDetails.title }
           </p>
           <div className={ styles.containerImagem }>
             <button
@@ -75,7 +72,7 @@ class CardDetails extends Component {
             <ul className={ styles.slider } ref={ this.myRef }>
               { imagens.map((item, index) => (
                 <div key={ index } className={ styles.items }>
-                  <img src={ item.url } alt={ titulo } />
+                  <img src={ item.url } alt={ objectDetails.title } />
                 </div>
               )) }
             </ul>
