@@ -4,14 +4,15 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 import CardDetails from './pages/Detalhes';
 import Header from './components/Header';
+import Checkout from './pages/Checkout';
 import styles from './App.module.css';
 
 class App extends Component {
   constructor() {
     super();
-
     this.state = {
       itemProduct: [],
+      arrayProduct: [],
     };
     this.addCart = this.addCart.bind(this);
   }
@@ -46,16 +47,26 @@ class App extends Component {
     this.saveLocalStorage();
   }
 
-  async addCart(childData) {
+  removeDuplicate = () => {
+    const { itemProduct } = this.state;
+    const data = itemProduct
+      .filter((v, i, a) => a.findIndex((v2) => (v2.id === v.id)) === i);
+    this.setState({ arrayProduct: data });
+    // this.saveLocalStorage();
+  }
+
+  addCart = async (childData) => {
     // Estamos atualizando e devemos fazer o somatorio dos valores
     await this.setState(({ itemProduct }) => ({ // atualiza o itemProduct
       itemProduct: [...itemProduct, childData], // soma com o childData
-    }));
+    }), () => {
+      this.removeDuplicate();
+    });
     this.saveLocalStorage();
   }
 
   render() {
-    const { itemProduct } = this.state;
+    const { itemProduct, arrayProduct } = this.state;
     return (
       <BrowserRouter>
         <Header />
@@ -72,9 +83,11 @@ class App extends Component {
           />
           <Route
             path="/cart"
-            render={ () => (
+            render={ (props) => (
               <Cart
+                { ...props }
                 itemProduct={ itemProduct }
+                arrayProduct={ arrayProduct }
                 addCart={ this.addCart }
                 removeCart={ this.removeCart }
                 removeTotal={ this.removeTotal }
@@ -88,6 +101,15 @@ class App extends Component {
                 { ...props }
                 addCart={ this.addCart }
                 itemProduct={ itemProduct }
+              />
+            ) }
+          />
+          <Route
+            path="/checkout"
+            render={ () => (
+              <Checkout
+                itemProduct={ itemProduct }
+                arrayProduct={ arrayProduct }
               />
             ) }
           />
