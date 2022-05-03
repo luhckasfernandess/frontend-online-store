@@ -53,10 +53,6 @@
   filter: brightness(0.9);
 }
 
-.aside label input {
-  display: none;
-}
-
 .form {
   align-items: center;
   border-radius: 8px;
