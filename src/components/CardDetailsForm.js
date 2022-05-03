@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './CardDetailsForm.module.css';
+import Rating from './Rating';
 
 class CardDetailsForm extends Component {
   constructor() {
@@ -60,81 +61,39 @@ class CardDetailsForm extends Component {
     return (
       <div>
         <form className={ styles.container }>
-          <label htmlFor="input-email">
-            <input
-              type="email"
-              data-testid="product-detail-email"
-              placeholder="Email"
-              name="email"
-              value={ email }
-              required
-              onChange={ this.handleChange }
-            />
-          </label>
-          <div>
-            <label htmlFor="input-rating-1">
+          <fieldset>
+            <label htmlFor="input-email">
               <input
-                type="radio"
-                value="1"
-                name="rating"
-                data-testid="1-rating"
+                type="email"
+                data-testid="product-detail-email"
+                placeholder="Email"
+                name="email"
+                value={ email }
+                required
                 onChange={ this.handleChange }
               />
             </label>
-            <label htmlFor="input-rating-2">
+            <div>
+              <Rating handleChange={ this.handleChange } />
+            </div>
+            <label htmlFor="input-text">
               <input
-                type="radio"
-                value="2"
-                name="rating"
-                data-testid="2-rating"
+                type="text"
+                data-testid="product-detail-evaluation"
+                placeholder="Mensagem (opcional)"
+                name="text"
+                value={ text }
                 onChange={ this.handleChange }
               />
             </label>
-            <label htmlFor="input-rating-3">
-              <input
-                type="radio"
-                value="3"
-                name="rating"
-                data-testid="3-rating"
-                onChange={ this.handleChange }
-              />
-            </label>
-            <label htmlFor="input-rating-4">
-              <input
-                type="radio"
-                value="4"
-                name="rating"
-                data-testid="4-rating"
-                onChange={ this.handleChange }
-              />
-            </label>
-            <label htmlFor="input-rating-5">
-              <input
-                type="radio"
-                value="5"
-                name="rating"
-                data-testid="5-rating"
-                onChange={ this.handleChange }
-              />
-            </label>
-          </div>
-          <label htmlFor="input-text">
-            <input
-              type="text"
-              data-testid="product-detail-evaluation"
-              placeholder="Mensagem (opcional)"
-              name="text"
-              value={ text }
-              onChange={ this.handleChange }
-            />
-          </label>
-          <button
-            type="button"
-            data-testid="submit-review-btn"
-            onClick={ this.handleSummit }
-          >
-            Avaliar
-          </button>
+            <button
+              type="button"
+              data-testid="submit-review-btn"
+              onClick={ this.handleSummit }
+            >
+              Avaliar
+            </button>
+          </fieldset>
         </form>
         <div>
           {arrayRatings.map((item, index) => (

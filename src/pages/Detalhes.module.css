@@ -1,0 +1,44 @@
+.container {
+  align-items: center;
+  display: flex;
+  margin-top: 84px;
+  width: 100%;
+}
+
+.containerImagem {
+  display: flex;
+  flex-direction: row;
+  max-width: 600px;
+  padding: 2rem;
+  place-items: center;
+}
+
+.containerImagem .slider {
+  display: flex;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  width: 100%;
+}
+
+.containerImagem .slider .items {
+  flex: none;
+  height: 400px;
+  scroll-snap-align: start;
+  width: 100%;
+}
+
+.containerImagem .slider .items img {
+  background-color: white;
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.containerImagem .arrowButtons {
+  background-color: white;
+  border: 0;
+  height: 50px;
+  width: 50px;
+}

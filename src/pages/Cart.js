@@ -53,15 +53,10 @@ class Cart extends Component {
       </div>
     );
 
-    const botao = (
-      <div className={ styles.finishCart }>
-        <button type="button">Finalizar Compra</button>
-      </div>
-    );
-
     return (
       <>
-        {arrayProduct.length === 0 || itemProduct.length === 0 ? frase : !frase }
+        {arrayProduct.length === 0 || itemProduct.length === 0
+          ? frase : !frase }
         <div className={ styles.container }>
           <div className={ styles.productCart }>
             {arrayProduct.map((element, index) => (
@@ -75,7 +70,13 @@ class Cart extends Component {
               />
             ))}
           </div>
-          {arrayProduct.length === 0 || itemProduct.length === 0 ? !botao : botao }
+          <footer className={ styles.finishCart }>
+            <h2>
+              Total R$:
+              <span>{ 0.00 }</span>
+            </h2>
+            <button type="button">Finalizar Compra</button>
+          </footer>
         </div>
       </>
     );

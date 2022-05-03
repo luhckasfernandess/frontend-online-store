@@ -1,12 +1,13 @@
 .container {
-  border-radius: 10px;
-  box-shadow: 1px 2px 8px #b4bbe2;
+  border-bottom: 1px solid #9dc2ff;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin: 10px 12px;
-  max-height: 300px;
+  max-height: 172px;
   transition: ease-in 0.2s;
-  width: 100%;
+}
+
+.container:first-child {
+  border-top: 1px solid #9dc2ff;
 }
 
 .container .div1 {
@@ -16,7 +17,7 @@
 }
 
 .container .div1 img {
-  height: 186px;
+  height: 92px;
   object-fit: contain;
 }
 

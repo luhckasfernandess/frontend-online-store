@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
-import CardDetails from './components/CardDetails';
+import CardDetails from './pages/Detalhes';
 import Header from './components/Header';
 import styles from './App.module.css';
 
