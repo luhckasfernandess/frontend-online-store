@@ -67,7 +67,7 @@ class Home extends Component {
           </h2>
           {arrayCategoria.map((item) => (
             <label
-              htmlFor="input-radio"
+              htmlFor={ `${item.id}` }
               key={ item.id }
               data-testid="category"
             >
@@ -75,6 +75,7 @@ class Home extends Component {
                 type="radio"
                 onChange={ this.handlerRadio }
                 value={ item.id }
+                id={ `${item.id}` }
                 name="categoria"
               />
               <span>{item.name}</span>
