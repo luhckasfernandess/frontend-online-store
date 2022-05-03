@@ -59,41 +59,39 @@ class CardDetailsForm extends Component {
   render() {
     const { arrayRatings, email, text } = this.state;
     return (
-      <div>
-        <form className={ styles.container }>
-          <fieldset>
-            <label htmlFor="input-email">
-              <input
-                type="email"
-                data-testid="product-detail-email"
-                placeholder="Email"
-                name="email"
-                value={ email }
-                required
-                onChange={ this.handleChange }
-              />
-            </label>
-            <div>
-              <Rating handleChange={ this.handleChange } />
-            </div>
-            <label htmlFor="input-text">
-              <input
-                type="text"
-                data-testid="product-detail-evaluation"
-                placeholder="Mensagem (opcional)"
-                name="text"
-                value={ text }
-                onChange={ this.handleChange }
-              />
-            </label>
-            <button
-              type="button"
-              data-testid="submit-review-btn"
-              onClick={ this.handleSummit }
-            >
-              Avaliar
-            </button>
-          </fieldset>
+      <div className={ styles.container }>
+        <h1>Avalie esse Produto</h1>
+        <form>
+          <label htmlFor="input-email">
+            <input
+              type="email"
+              data-testid="product-detail-email"
+              placeholder="Email"
+              name="email"
+              value={ email }
+              required
+              onChange={ this.handleChange }
+            />
+          </label>
+          <div>
+            <Rating handleChange={ this.handleChange } />
+          </div>
+          <label htmlFor="input-text">
+            <input
+              data-testid="product-detail-evaluation"
+              placeholder="Mensagem (opcional)"
+              name="text"
+              value={ text }
+              onChange={ this.handleChange }
+            />
+          </label>
+          <button
+            type="button"
+            data-testid="submit-review-btn"
+            onClick={ this.handleSummit }
+          >
+            Avaliar
+          </button>
         </form>
         <div>
           {arrayRatings.map((item, index) => (

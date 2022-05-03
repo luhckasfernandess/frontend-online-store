@@ -8,8 +8,10 @@
 
 .container {
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid #bdbdbd;
+  border-radius: 10px;
   display: flex;
+  margin-bottom: 100px;
   padding: 2rem;
   width: 50%;
 }
