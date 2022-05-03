@@ -12,7 +12,7 @@
   margin-bottom: 20px;
 }
 
-.container form label {
+.container form .description, .container form .email {
   display: flex;
   margin-bottom: 10px;
   width: 100%;

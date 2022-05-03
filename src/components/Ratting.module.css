@@ -1,0 +1,13 @@
+.ratting {
+  display: flex;
+  flex-direction: row;
+}
+
+.ratting label input {
+  display: none;
+}
+
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+}
