@@ -55,54 +55,67 @@ class CardDetails extends Component {
   render() {
     const { titulo, imagens, atributos, objectDetails } = this.state;
     return (
-      <div className={ styles.container }>
-        <p data-testid="product-detail-name">{ titulo }</p>
-        <div className={ styles.containerImagem }>
-          <button
-            type="button"
-            onClick={ this.handleLeftClick }
-            className={ styles.arrowButtons }
+      <section className={ styles.section }>
+        <div className={ styles.container }>
+
+          <p
+            className={ styles.ProductTitle }
+            data-testid="product-detail-name"
           >
-            <img src={ Left } alt="Mover carrousel para esquerda " />
-          </button>
-          <ul className={ styles.slider } ref={ this.myRef }>
-            { imagens.map((item, index) => (
-              <div key={ index } className={ styles.items }>
-                <img src={ item.url } alt={ titulo } />
+            { titulo }
+          </p>
+          <div className={ styles.containerImagem }>
+            <button
+              type="button"
+              onClick={ this.handleLeftClick }
+              className={ styles.arrowButtons }
+            >
+              <img src={ Left } alt="Mover carrousel para esquerda " />
+            </button>
+            <ul className={ styles.slider } ref={ this.myRef }>
+              { imagens.map((item, index) => (
+                <div key={ index } className={ styles.items }>
+                  <img src={ item.url } alt={ titulo } />
+                </div>
+              )) }
+            </ul>
+            <button
+              type="button"
+              className={ styles.arrowButtons }
+              onClick={ this.handleRightClick }
+            >
+              <img src={ Right } alt="Mover carrousel para direita " />
+            </button>
+          </div>
+          <div className={ styles.containerPrice }>
+            <p>
+              <span>R$:</span>
+
+              { objectDetails.price }
+
+            </p>
+            <button
+              type="button"
+              data-testid="product-detail-add-to-cart"
+              onClick={ this.onTrigger }
+            >
+              Adicionar ao carrinho
+            </button>
+          </div>
+          <div className={ styles.atributos }>
+            { atributos.map((item, index) => (
+              <div key={ index }>
+                <h4>
+                  { item.name }
+                  :
+                </h4>
+                <p>{ item.value_name }</p>
               </div>
             )) }
-          </ul>
-          <button
-            type="button"
-            className={ styles.arrowButtons }
-            onClick={ this.handleRightClick }
-          >
-            <img src={ Right } alt="Mover carrousel para direita " />
-          </button>
+          </div>
+          <CardDetailsForm />
         </div>
-        <div>
-          <button
-            type="button"
-            data-testid="product-detail-add-to-cart"
-            onClick={ this.onTrigger }
-          >
-            Adicionar ao carrinho
-          </button>
-          <h3>{ objectDetails.price }</h3>
-        </div>
-        <div>
-          { atributos.map((item, index) => (
-            <div key={ index }>
-              <h4>
-                { item.name }
-                :
-              </h4>
-              <p>{ item.value_name }</p>
-            </div>
-          )) }
-        </div>
-        <CardDetailsForm />
-      </div>
+      </section>
     );
   }
 }
