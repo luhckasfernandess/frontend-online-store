@@ -17,6 +17,10 @@ class App extends Component {
     this.addCart = this.addCart.bind(this);
   }
 
+  componentDidMount() {
+    this.getLocalStorage();
+  }
+
   saveLocalStorage = () => {
     const { itemProduct } = this.state;
     const json = JSON.stringify(itemProduct);
@@ -29,8 +33,7 @@ class App extends Component {
     itemProduct.forEach((item) => {
       if (item.id !== childData.id) data.push(item);
     });
-    this.setState({ itemProduct: data });
-    this.saveLocalStorage();
+    this.setState({ itemProduct: data }, () => { this.saveLocalStorage(); });
   }
 
   removeCart = (childData) => {
@@ -42,9 +45,8 @@ class App extends Component {
       const data3 = itemProduct;
       this.setState(() => ({
         itemProduct: data3,
-      }));
+      }), () => { this.saveLocalStorage(); });
     }
-    this.saveLocalStorage();
   }
 
   removeDuplicate = () => {
@@ -65,11 +67,25 @@ class App extends Component {
     this.saveLocalStorage();
   }
 
+  getLocalStorage = () => {
+    const x = localStorage.getItem('itemProduct');
+    const data = JSON.parse(x);
+    if (data) {
+      this.setState({
+        itemProduct: data,
+      }, () => { this.removeDuplicate(); });
+    } else {
+      this.setState({
+        itemProduct: [],
+      });
+    }
+  }
+
   render() {
     const { itemProduct, arrayProduct } = this.state;
     return (
       <BrowserRouter>
-        <Header />
+        <Header itemProduct={ itemProduct } />
         <main className={ styles.main }>
           <Route
             exact

@@ -67,7 +67,7 @@ class CardDetails extends Component {
               onClick={ this.handleLeftClick }
               className={ styles.arrowButtons }
             >
-              <img src={ Left } alt="Mover carrousel para esquerda " />
+              <img src={ Left } alt="Mover carrousel para esquerda" />
             </button>
             <ul className={ styles.slider } ref={ this.myRef }>
               { imagens.map((item, index) => (

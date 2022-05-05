@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import styles from './CardItem.module.css';
 import Bin from '../img/bin.svg';
@@ -10,6 +10,8 @@ class CardItem extends Component {
     this.state = {
       quantity: 0,
     };
+
+    this.myRef = createRef();
   }
 
   componentDidMount = () => {
@@ -54,12 +56,13 @@ class CardItem extends Component {
     }
   }
 
-  onTrigger3 = (event) => {
+  onTrigger3 = () => {
     const { removeTotal, teste } = this.props;
     this.setState({
       quantity: 0,
     });
-    event.target.parentElement.parentNode.parentElement.remove();
+    const { current } = this.myRef;
+    current.remove();
     this.onTriggerFunction(teste, removeTotal);
   }
 
@@ -74,7 +77,7 @@ class CardItem extends Component {
     const { quantity } = this.state;
     const priceQuanty = parseFloat(price.toFixed(2));
     return (
-      <div className={ styles.container }>
+      <div className={ styles.container } ref={ this.myRef }>
         <div className={ styles.div1 }>
           <img src={ thumbnail } alt={ title } />
           <div>
