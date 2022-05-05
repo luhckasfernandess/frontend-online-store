@@ -18,6 +18,7 @@ class Card extends Component {
     const { item } = this.props;
     return (
       <div data-testid="product" className={ styles.card }>
+
         <Link
           to={ `/CardDetails/${item.id}` }
           data-testid="product-detail-link"

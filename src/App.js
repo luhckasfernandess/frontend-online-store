@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import CardDetails from './pages/Detalhes';
@@ -54,15 +54,14 @@ class App extends Component {
     const data = itemProduct
       .filter((v, i, a) => a.findIndex((v2) => (v2.id === v.id)) === i);
     this.setState({ arrayProduct: data });
-    // this.saveLocalStorage();
   }
 
   addCart = async (childData) => {
     // Estamos atualizando e devemos fazer o somatorio dos valores
     await this.setState(({ itemProduct }) => ({ // atualiza o itemProduct
       itemProduct: [...itemProduct, childData], // soma com o childData
-    }), () => {
-      this.removeDuplicate();
+    }), async () => {
+      await this.removeDuplicate();
     });
     this.saveLocalStorage();
   }
@@ -87,48 +86,50 @@ class App extends Component {
       <BrowserRouter>
         <Header itemProduct={ itemProduct } />
         <main className={ styles.main }>
-          <Route
-            exact
-            path="/"
-            render={ () => (
-              <Home
-                name="Digite algum termo de pesquisa ou escolha uma categoria."
-                addCart={ this.addCart }
-              />
-            ) }
-          />
-          <Route
-            path="/cart"
-            render={ (props) => (
-              <Cart
-                { ...props }
-                itemProduct={ itemProduct }
-                arrayProduct={ arrayProduct }
-                addCart={ this.addCart }
-                removeCart={ this.removeCart }
-                removeTotal={ this.removeTotal }
-              />
-            ) }
-          />
-          <Route
-            path="/CardDetails/:id"
-            render={ (props) => (
-              <CardDetails
-                { ...props }
-                addCart={ this.addCart }
-                itemProduct={ itemProduct }
-              />
-            ) }
-          />
-          <Route
-            path="/checkout"
-            render={ () => (
-              <Checkout
-                itemProduct={ itemProduct }
-                arrayProduct={ arrayProduct }
-              />
-            ) }
-          />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={ () => (
+                <Home
+                  name="Digite algum termo de pesquisa ou escolha uma categoria."
+                  addCart={ this.addCart }
+                />
+              ) }
+            />
+            <Route
+              path="/cart"
+              render={ (props) => (
+                <Cart
+                  { ...props }
+                  itemProduct={ itemProduct }
+                  arrayProduct={ arrayProduct }
+                  addCart={ this.addCart }
+                  removeCart={ this.removeCart }
+                  removeTotal={ this.removeTotal }
+                />
+              ) }
+            />
+            <Route
+              path="/CardDetails/:id"
+              render={ (props) => (
+                <CardDetails
+                  { ...props }
+                  addCart={ this.addCart }
+                  itemProduct={ itemProduct }
+                />
+              ) }
+            />
+            <Route
+              path="/checkout"
+              render={ () => (
+                <Checkout
+                  itemProduct={ itemProduct }
+                  arrayProduct={ arrayProduct }
+                />
+              ) }
+            />
+          </Switch>
         </main>
       </BrowserRouter>
     );
