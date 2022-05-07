@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Card from '../components/Card';
-import styles from './Home.module.css';
+import styles from './styles/Home.module.css';
 import Search from '../img/Search.svg';
 import Categories from '../img/Categories.svg';
 

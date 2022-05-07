@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CardItem from '../components/CardItem';
-import styles from './Cart.module.css';
+import styles from './styles/Cart.module.css';
 
 class Cart extends Component {
   finishButtonCart = () => {

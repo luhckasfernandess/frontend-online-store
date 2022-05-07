@@ -2,9 +2,10 @@ import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { getProductDetails } from '../services/api';
 import CardDetailsForm from '../components/CardDetailsForm';
-import styles from './Detalhes.module.css';
-import Left from '../img/circleLeft.svg';
-import Right from '../img/circleRight.svg';
+import Loading from '../components/Loading';
+import styles from './styles/Detalhes.module.css';
+import Left from '../img/angle-left-solid.svg';
+import Right from '../img/angle-right-solid.svg';
 
 class CardDetails extends Component {
   constructor() {
@@ -13,6 +14,7 @@ class CardDetails extends Component {
       objectDetails: {},
       imagens: [],
       atributos: [],
+      loading: false,
     };
     this.myRef = createRef();
   }
@@ -23,11 +25,13 @@ class CardDetails extends Component {
 
   productDetails = async () => {
     const { match: { params: { id } } } = this.props;
+    this.setState({ loading: true });
     const data = await getProductDetails(id);
     this.setState({
       objectDetails: data,
       imagens: data.pictures,
       atributos: data.attributes,
+      loading: false,
     });
   }
 
@@ -50,7 +54,11 @@ class CardDetails extends Component {
   }
 
   render() {
-    const { imagens, atributos, objectDetails } = this.state;
+    const { imagens, atributos, objectDetails, loading } = this.state;
+    if (loading) {
+      return <Loading />;
+    }
+
     return (
       <section className={ styles.section }>
         <div className={ styles.container }>

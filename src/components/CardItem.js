@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
-import styles from './CardItem.module.css';
+import styles from './styles/CardItem.module.css';
 import Bin from '../img/bin.svg';
 
 class CardItem extends Component {
@@ -10,28 +10,12 @@ class CardItem extends Component {
     this.state = {
       quantity: 0,
     };
-
     this.myRef = createRef();
   }
 
   componentDidMount = () => {
     this.countAmountInitial();
   }
-
-  // onTriggerAdd = () => {
-  //   const { addCart, teste } = this.props;
-  //   addCart(teste);
-  // }
-
-  // onTriggerRemove = () => {
-  //   const { removeCart, teste } = this.props;
-  //   removeCart(teste);
-  // }
-
-  // onTriggerRemoveTotal = () => {
-  //   const { removeTotal, teste } = this.props;
-  //   removeTotal(teste);
-  // }
 
   onTriggerFunction = (teste, callback) => {
     callback(teste);
@@ -75,7 +59,7 @@ class CardItem extends Component {
   render() {
     const { teste: { title, thumbnail, price } } = this.props;
     const { quantity } = this.state;
-    const priceQuanty = parseFloat(price.toFixed(2));
+    const priceQuanty = price;
     return (
       <div className={ styles.container } ref={ this.myRef }>
         <div className={ styles.div1 }>

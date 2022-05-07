@@ -8,7 +8,6 @@
 
 .container {
   align-items: center;
-  border: 1px solid #bdbdbd;
   border-radius: 10px;
   display: flex;
   margin-bottom: 100px;
@@ -26,7 +25,6 @@
 
 .containerImagem .slider {
   display: flex;
-  -webkit-overflow-scrolling: touch;
   overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
@@ -36,6 +34,7 @@
 .containerImagem .slider .items {
   flex: none;
   height: 400px;
+  pointer-events: none;
   scroll-snap-align: start;
   width: 100%;
 }
@@ -48,11 +47,16 @@
 }
 
 .containerImagem .arrowButtons {
+  align-items: center;
   background-color: white;
   border: 0;
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  box-shadow: 0 1px 3px #888;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  line-height: 100px;
+  text-align: center;
+  width: 45px;
 }
 
 .ProductTitle {
@@ -93,7 +97,7 @@
   padding: 0 0.5rem;
 }
 
-.containerImagem .arrowButtons img:hover {
+.containerImagem .arrowButtons:hover {
   box-shadow: 1px 4px 10px #b4bbe2 , 1px 2px 10px #d2d6ed;
   cursor: pointer;
 }

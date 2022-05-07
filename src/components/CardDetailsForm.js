@@ -1,5 +1,5 @@
 import React, { Component, createRef } from 'react';
-import styles from './CardDetailsForm.module.css';
+import styles from './styles/CardDetailsForm.module.css';
 import Rating from './Rating';
 
 class CardDetailsForm extends Component {

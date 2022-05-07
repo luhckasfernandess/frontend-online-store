@@ -19,4 +19,6 @@ body {
   font-weight: 400;
   letter-spacing: 0.44px;
   line-height: 1rem;
+  background: rgba(0,0,0,.1)
 }
+
