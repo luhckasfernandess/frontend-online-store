@@ -36,8 +36,8 @@ class Card extends Component {
     // const { imgHighQuality } = this.state;
 
     const free = (
-      <div>
-        <h4 data-testid="free-shipping">frete grátis</h4>
+      <div className={ styles.freeShipping }>
+        <h2 data-testid="free-shipping">Frete grátis</h2>
         <img src={ freeShipping } alt="Envio Gratis" />
       </div>
     );
@@ -51,11 +51,11 @@ class Card extends Component {
           <img src={ item.thumbnail } alt={ item.title } key={ item.id } />
         </Link>
         <div className={ styles.information }>
+          <p>{ item.title }</p>
           <div>
             { item.shipping.free_shipping ? free : !free}
-            <p>{ item.title }</p>
+            <span>{ `R$ ${item.price}` }</span>
           </div>
-          <span>{ `R$ ${item.price}` }</span>
           <button
             data-testid="product-add-to-cart"
             type="button"

@@ -53,3 +53,19 @@ div {
   font-size: 20px;
   font-weight: 700;
 }
+
+
+.card .freeShipping {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.card .freeShipping h2 {
+  color: green;
+  font-size: 20px;
+  font-weight: 400;
+}
