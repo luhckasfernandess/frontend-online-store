@@ -57,19 +57,23 @@ class CardItem extends Component {
   }
 
   render() {
-    const { teste: { title, thumbnail, price } } = this.props;
+    const { teste, itemProduct } = this.props;
     const { quantity } = this.state;
-    const priceQuanty = price;
+    const priceQuanty = teste.price;
+    const data = itemProduct.filter((item) => item.id === teste.id);
+    console.log(data.length);
+    console.log(teste.available_quantity);
     return (
       <div className={ styles.container } ref={ this.myRef }>
         <div className={ styles.div1 }>
-          <img src={ thumbnail } alt={ title } />
+          <img src={ teste.thumbnail } alt={ teste.title } />
           <div>
             <button
               type="button"
               data-testid=" product-increase-quantity"
               onClick={ this.onTrigger }
               className={ styles.buttonAdd }
+              disabled={ data.length >= teste.available_quantity }
             >
               +
             </button>
@@ -103,7 +107,7 @@ class CardItem extends Component {
             className={ styles.title }
             data-testid="shopping-cart-product-name"
           >
-            { title }
+            { teste.title }
           </p>
         </div>
       </div>

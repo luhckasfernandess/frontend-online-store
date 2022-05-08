@@ -10,7 +10,12 @@ class Cart extends Component {
   }
 
   render() {
-    const { addCart, removeCart, removeTotal, itemProduct, arrayProduct } = this.props;
+    const { addCart,
+      removeCart,
+      removeTotal,
+      itemProduct,
+      arrayProduct,
+    } = this.props;
     const frase = (
       <div className={ styles.message }>
         <span

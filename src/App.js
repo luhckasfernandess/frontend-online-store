@@ -56,10 +56,10 @@ class App extends Component {
     this.setState({ arrayProduct: data });
   }
 
-  addCart = async (childData) => {
+  addCart = async (item) => {
     // Estamos atualizando e devemos fazer o somatorio dos valores
     await this.setState(({ itemProduct }) => ({ // atualiza o itemProduct
-      itemProduct: [...itemProduct, childData], // soma com o childData
+      itemProduct: [...itemProduct, item], // soma com o childData
     }), async () => {
       await this.removeDuplicate();
     });
@@ -81,7 +81,7 @@ class App extends Component {
   }
 
   render() {
-    const { itemProduct, arrayProduct } = this.state;
+    const { itemProduct, arrayProduct, disabled } = this.state;
     return (
       <BrowserRouter>
         <Header itemProduct={ itemProduct } />
