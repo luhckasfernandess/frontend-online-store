@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import { getPictureHighQuality } from '../services/api';
 import styles from './styles/Card.module.css';
+import freeShipping from '../assets/TruckFree.svg';
 
 class Card extends Component {
   constructor() {
@@ -33,6 +34,14 @@ class Card extends Component {
   render() {
     const { item } = this.props;
     // const { imgHighQuality } = this.state;
+
+    const free = (
+      <div>
+        <h4 data-testid="free-shipping">frete grátis</h4>
+        <img src={ freeShipping } alt="Envio Gratis" />
+      </div>
+    );
+
     return (
       <div data-testid="product" className={ styles.card }>
         <Link
@@ -42,7 +51,10 @@ class Card extends Component {
           <img src={ item.thumbnail } alt={ item.title } key={ item.id } />
         </Link>
         <div className={ styles.information }>
-          <p>{ item.title }</p>
+          <div>
+            { item.shipping.free_shipping ? free : !free}
+            <p>{ item.title }</p>
+          </div>
           <span>{ `R$ ${item.price}` }</span>
           <button
             data-testid="product-add-to-cart"

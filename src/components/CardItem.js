@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles/CardItem.module.css';
-import Bin from '../img/bin.svg';
+import Bin from '../assets/bin.svg';
 
 class CardItem extends Component {
   constructor() {
@@ -61,8 +61,6 @@ class CardItem extends Component {
     const { quantity } = this.state;
     const priceQuanty = teste.price;
     const data = itemProduct.filter((item) => item.id === teste.id);
-    console.log(data.length);
-    console.log(teste.available_quantity);
     return (
       <div className={ styles.container } ref={ this.myRef }>
         <div className={ styles.div1 }>

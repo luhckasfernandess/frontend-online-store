@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Icon from '../img/Cart.svg';
+import Icon from '../assets/Cart.svg';
 import styles from './styles/Header.module.css';
 
 class Header extends Component {

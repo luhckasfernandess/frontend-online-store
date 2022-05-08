@@ -4,8 +4,8 @@ import { getProductDetails } from '../services/api';
 import CardDetailsForm from '../components/CardDetailsForm';
 import Loading from '../components/Loading';
 import styles from './styles/Detalhes.module.css';
-import Left from '../img/angle-left-solid.svg';
-import Right from '../img/angle-right-solid.svg';
+import Left from '../assets/angle-left-solid.svg';
+import Right from '../assets/angle-right-solid.svg';
 
 class CardDetails extends Component {
   constructor() {
