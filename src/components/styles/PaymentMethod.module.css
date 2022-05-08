@@ -1,0 +1,41 @@
+.section h2 {
+  color: #4a4a4a;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.paymentMethod {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+.paymentMethod label {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: center;
+  transition: filter 0.9s;
+}
+
+.paymentMethod label:hover {
+  box-shadow: 1px 4px 10px #b4bbe2 , 1px 2px 10px #d2d6ed;
+  filter: brightness(0.9);
+}
+
+.paymentMethod label img {
+  height: 100%;
+  width: 100%;
+}
+
+.paymentMethod label input {
+  display: none;
+}

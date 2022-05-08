@@ -59,7 +59,7 @@ class CardItem extends Component {
   render() {
     const { teste, itemProduct } = this.props;
     const { quantity } = this.state;
-    const priceQuanty = teste.price;
+    const priceQuantity = teste.price;
     const data = itemProduct.filter((item) => item.id === teste.id);
     return (
       <div className={ styles.container } ref={ this.myRef }>
@@ -100,7 +100,7 @@ class CardItem extends Component {
             <img src={ Bin } alt="remover" />
           </button>
 
-          <span>{ `R$ ${priceQuanty * quantity}`}</span>
+          <span>{ `R$ ${parseFloat(priceQuantity.toFixed(2)) * quantity}`}</span>
           <p
             className={ styles.title }
             data-testid="shopping-cart-product-name"

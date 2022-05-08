@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import { getPictureHighQuality } from '../services/api';
+// import Loading from './Loading';
 import styles from './styles/Card.module.css';
 import freeShipping from '../assets/TruckFree.svg';
 
@@ -9,7 +10,8 @@ class Card extends Component {
   constructor() {
     super();
     // this.state = {
-    //   imgHighQuality: [],
+    //   // imgHighQuality: [],
+    //   loading: false,
     // };
     this.onTrigger = this.onTrigger.bind(this);
   }
@@ -23,17 +25,17 @@ class Card extends Component {
     addCart(item);
   }
 
-  // picturesHighQuality = async () => {
+  // async picturesHighQuality() {
   //   const { item } = this.props;
+  //   this.setState({ loading: true });
   //   const data = await getPictureHighQuality(item.thumbnail_id);
-  //   const { variations } = data;
-  //   const results = variations.filter((_, index) => index === 0);
-  //   this.setState({ imgHighQuality: results });
+  //   const results = data.variations.filter((_, index) => index === 0);
+  //   this.setState({ imgHighQuality: results, loading: false });
   // }
 
   render() {
     const { item } = this.props;
-    // const { imgHighQuality } = this.state;
+    // const { imgHighQuality, loading } = this.state;
 
     const free = (
       <div className={ styles.freeShipping }>
@@ -42,13 +44,22 @@ class Card extends Component {
       </div>
     );
 
+    // if (loading) {
+    //   return <Loading />;
+    // }
+
     return (
       <div data-testid="product" className={ styles.card }>
         <Link
           to={ `/CardDetails/${item.id}` }
           data-testid="product-detail-link"
         >
-          <img src={ item.thumbnail } alt={ item.title } key={ item.id } />
+
+          <img src={ item.thumbnail } alt={ item.title } />
+          {/* {imgHighQuality.map(({ url }) => (
+            <img src={ url } alt={ item.title } key={ item.id } />
+
+          ))} */}
         </Link>
         <div className={ styles.information }>
           <p>{ item.title }</p>

@@ -50,13 +50,15 @@
   align-items: center;
   background-color: white;
   border: 0;
+  border-radius: 5px;
   box-shadow: 0 1px 3px #888;
   display: flex;
   height: 100px;
   justify-content: center;
   line-height: 100px;
   text-align: center;
-  width: 45px;
+  transition: 0.9s;
+  width: 60px;
 }
 
 .ProductTitle {
@@ -98,8 +100,10 @@
 }
 
 .containerImagem .arrowButtons:hover {
+  background-color: #485fc7;
   box-shadow: 1px 4px 10px #b4bbe2 , 1px 2px 10px #d2d6ed;
   cursor: pointer;
+  opacity: 0.9;
 }
 
 .atributos {

@@ -35,7 +35,6 @@ class CardDetailsForm extends Component {
   // }
 
   handleChange = ({ target }) => {
-    console.log(target);
     const { name, value } = target;
     this.setState({
       [name]: value,

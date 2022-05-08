@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styles from './styles/CardFinshingCart.module.css';
 
-class Card extends Component {
+class CardFinishingCart extends Component {
   render() {
-    const { itemProduct, arrayProduct } = this.props;
-    console.log(itemProduct);
-    console.log(arrayProduct);
+    const { thumbnail, title, price, itemProduct, id } = this.props;
+
     return (
-      <h1>ola</h1>
+      <tr className={ styles.card }>
+        <td className={ styles.container_img_title }>
+          <img src={ thumbnail } alt={ title } />
+          <p>{ title }</p>
+        </td>
+        <td>{price}</td>
+        <td>{ itemProduct.filter((item) => item.id === id).length }</td>
+      </tr>
     );
   }
 }
 
-Card.propTypes = {
+CardFinishingCart.propTypes = {
   itemProduct: PropTypes.arrayOf(PropTypes.object).isRequired,
-  arrayProduct: PropTypes.arrayOf(PropTypes.object).isRequired,
+  price: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
-export default Card;
+export default CardFinishingCart;

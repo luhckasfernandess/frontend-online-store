@@ -1,0 +1,23 @@
+.card {
+  justify-content: space-between;
+  text-align: center;
+}
+
+.card td {
+  border-spacing: 0;
+  border-top: solid #dbdbdb;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 0.5em 0.75em;
+}
+
+.card .container_img_title {
+  align-items: center;
+  display: flex;
+}
+
+.card .container_img_title img {
+  height: 40px;
+  object-fit: contain;
+  width: 40px;
+}
