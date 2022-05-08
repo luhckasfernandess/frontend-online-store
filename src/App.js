@@ -81,7 +81,7 @@ class App extends Component {
   }
 
   render() {
-    const { itemProduct, arrayProduct, disabled } = this.state;
+    const { itemProduct, arrayProduct } = this.state;
     return (
       <BrowserRouter>
         <Header itemProduct={ itemProduct } />
