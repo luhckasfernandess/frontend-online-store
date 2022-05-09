@@ -4,23 +4,31 @@ div {
 }
 
 .card {
+  border: 1px solid #d2d6ed;
+  border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  height: 400px;
-  justify-content: space-between;
-  padding: 16px;
-  transition: 0.5s ease-in;
+  flex: 1 1;
+  height: 531.08px;
+  transition: 0.5s;
 }
 
 .card:hover {
-  border-radius: 10px;
   box-shadow: 1px 4px 10px #b4bbe2 , 1px 2px 10px #d2d6ed;
 }
 
 .card a img {
-  height: 150px;
+  border-radius: 10px;
+  height: 284px;
   object-fit: contain;
   width: 100%;
+}
+
+.card .information {
+  border-top: 1px solid #d2d6ed;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  padding: 20px;
 }
 
 .card button {
@@ -44,4 +52,20 @@ div {
 .card span {
   font-size: 20px;
   font-weight: 700;
+}
+
+
+.card .freeShipping {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.card .freeShipping h2 {
+  color: green;
+  font-size: 20px;
+  font-weight: 400;
 }

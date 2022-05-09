@@ -7,13 +7,22 @@
   align-items: center;
   background-color: #2264d1;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   min-height: 4rem;
   position: fixed;
   width: 100%;
 }
 
-a {
+.header .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header .container a {
+  margin: 0 20px;
+  position: relative;
   text-decoration: none;
 }
 
@@ -26,11 +35,10 @@ a {
   gap: 4px;
   height: 100%;
   justify-content: center;
-  margin-left: 16px;
   transition: filter 0.2s;
 }
 
-.logo:hover {
+.header .container a:hover {
   filter: brightness(0.9);
 }
 
@@ -47,6 +55,25 @@ a {
   width: 40px;
 }
 
-.cart {
+.header .container a .cart {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
   margin-right: 16px;
+}
+
+.header .container a .quantity {
+  align-items: center;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  font-size: 18px;
+  font-weight: 600;
+  height: 24px;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 25px;
 }

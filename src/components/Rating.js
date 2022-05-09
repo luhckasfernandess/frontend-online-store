@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FaStar } from 'react-icons/fa';
 import PropTypes from 'prop-types';
-import styles from './Ratting.module.css';
+import styles from './styles/Ratting.module.css';
 
 class Rating extends Component {
   constructor() {

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Card from '../components/Card';
-import styles from './Home.module.css';
-import Search from '../img/Search.svg';
-import Categories from '../img/Categories.svg';
+import styles from './styles/Home.module.css';
+import Search from '../assets/Search.svg';
+import Categories from '../assets/Categories.svg';
 
 class Home extends Component {
   constructor() {
@@ -13,15 +13,13 @@ class Home extends Component {
       arrayCategoria: [],
       arrayProduct: [],
       product: '',
-      categoria: '',
       fraseIncial: true,
       loading: false,
     };
   }
 
-  componentDidMount = async () => {
-    await this.getApiCategoria();
-    this.getApiProducts();
+  componentDidMount = () => {
+    this.getApiCategoria();
   }
 
   getApiCategoria = async () => {
@@ -29,28 +27,23 @@ class Home extends Component {
     this.setState({ arrayCategoria: data });
   }
 
-  getApiProducts = async () => {
-    const { product, categoria } = this.state;
-    const data = await getProductsFromCategoryAndQuery(categoria, product);
-    this.setState({ arrayProduct: data.results, loading: false });
-  }
-
   handlerChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
   }
 
-  handlerClick = () => {
-    this.setState({ fraseIncial: false, loading: true }, () => {
-      this.getApiProducts();
-    });
+  handlerClickCategories = async ({ target }) => {
+    const categoria = target.value;
+    this.setState({ loading: true, fraseIncial: false });
+    const data = await getProductsFromCategoryAndQuery(categoria, '');
+    this.setState({ arrayProduct: data.results, loading: false, product: '' });
   }
 
-  handlerRadio = (event) => {
-    this.handlerChange(event);
-    setTimeout(() => {
-      this.handlerClick();
-    }, 1);
+  handlerClickNameProduct = async () => {
+    const { product } = this.state;
+    this.setState({ loading: true, fraseIncial: false });
+    const data = await getProductsFromCategoryAndQuery('', product);
+    this.setState({ arrayProduct: data.results, loading: false });
   }
 
   render() {
@@ -72,8 +65,8 @@ class Home extends Component {
               data-testid="category"
             >
               <input
-                type="radio"
-                onChange={ this.handlerRadio }
+                type="button"
+                onClick={ this.handlerClickCategories }
                 value={ item.id }
                 id={ `${item.id}` }
                 name="categoria"
@@ -88,7 +81,7 @@ class Home extends Component {
             <button
               type="button"
               data-testid="query-button"
-              onClick={ this.handlerClick }
+              onClick={ this.handlerClickNameProduct }
               value="Search"
             >
               <img src={ Search } alt="pesquisar" />
@@ -103,12 +96,13 @@ class Home extends Component {
             />
           </div>
           { fraseIncial ? frase : !frase }
-          { loading ? loadingElement : !loadingElement }
-          <div className={ styles.cards }>
-            { arrayProduct.map((item, index) => (
-              <Card item={ item } addCart={ addCart } key={ index } />
-            )) }
-          </div>
+          { loading ? loadingElement : (
+            <div className={ styles.cards }>
+              { arrayProduct.map((item, index) => (
+                <Card item={ item } addCart={ addCart } key={ index } />
+              )) }
+            </div>
+          ) }
         </div>
       </section>
     );

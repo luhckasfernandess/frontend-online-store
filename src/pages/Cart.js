@@ -1,48 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CardItem from '../components/CardItem';
-import styles from './Cart.module.css';
+import styles from './styles/Cart.module.css';
 
 class Cart extends Component {
-  constructor() {
-    super();
-    this.state = {
-      arrayProduct: [],
-    };
-  }
-
-  componentDidMount = async () => {
-    // this.getSavedStorage();
-    this.removeDuplicate();
-  }
-
-  // getSavedStorage = () => {
-  //   const x = localStorage.getItem('itemProduct');
-  //   const data = JSON.parse(x);
-  //   if (data) {
-  //     this.setState({
-  //       itemProduct2: data,
-  //     });
-  //   }
-  // }
-
-  // saveLocalStorage = () => {
-  //   const { cartProducts } = this.state;
-  //   const json = JSON.stringify(cartProducts);
-  //   localStorage.setItem('cartProducts', json);
-  // }
-
-  removeDuplicate = () => {
-    const { itemProduct } = this.props;
-    const data = itemProduct
-      .filter((v, i, a) => a.findIndex((v2) => (v2.id === v.id)) === i);
-    this.setState({ arrayProduct: data });
-    // this.saveLocalStorage();
+  finishButtonCart = () => {
+    const { history } = this.props;
+    history.push('/checkout');
   }
 
   render() {
-    const { arrayProduct } = this.state;
-    const { addCart, removeCart, removeTotal, itemProduct } = this.props;
+    const { addCart,
+      removeCart,
+      removeTotal,
+      itemProduct,
+      arrayProduct,
+    } = this.props;
     const frase = (
       <div className={ styles.message }>
         <span
@@ -73,9 +46,20 @@ class Cart extends Component {
           <footer className={ styles.finishCart }>
             <h2>
               Total R$:
-              <span>{ 0.00 }</span>
+              <span>
+                {
+                  itemProduct.reduce((acc, curr) => acc + curr.price, 0).toFixed(2)
+                }
+              </span>
             </h2>
-            <button type="button">Finalizar Compra</button>
+            <button
+              type="button"
+              onClick={ this.finishButtonCart }
+              data-testid="checkout-products"
+              disabled={ arrayProduct.length === 0 || itemProduct.length === 0 }
+            >
+              Finalizar Compra
+            </button>
           </footer>
         </div>
       </>
@@ -85,9 +69,11 @@ class Cart extends Component {
 
 Cart.propTypes = {
   itemProduct: PropTypes.arrayOf(PropTypes.object).isRequired,
+  arrayProduct: PropTypes.arrayOf(PropTypes.object).isRequired,
   addCart: PropTypes.func.isRequired,
   removeCart: PropTypes.func.isRequired,
   removeTotal: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default Cart;

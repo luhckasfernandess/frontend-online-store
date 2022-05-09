@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
-import styles from './CardItem.module.css';
-import Bin from '../img/bin.svg';
+import styles from './styles/CardItem.module.css';
+import Bin from '../assets/bin.svg';
 
 class CardItem extends Component {
   constructor() {
@@ -10,26 +10,12 @@ class CardItem extends Component {
     this.state = {
       quantity: 0,
     };
+    this.myRef = createRef();
   }
 
   componentDidMount = () => {
     this.countAmountInitial();
   }
-
-  // onTriggerAdd = () => {
-  //   const { addCart, teste } = this.props;
-  //   addCart(teste);
-  // }
-
-  // onTriggerRemove = () => {
-  //   const { removeCart, teste } = this.props;
-  //   removeCart(teste);
-  // }
-
-  // onTriggerRemoveTotal = () => {
-  //   const { removeTotal, teste } = this.props;
-  //   removeTotal(teste);
-  // }
 
   onTriggerFunction = (teste, callback) => {
     callback(teste);
@@ -54,12 +40,13 @@ class CardItem extends Component {
     }
   }
 
-  onTrigger3 = (event) => {
+  onTrigger3 = () => {
     const { removeTotal, teste } = this.props;
     this.setState({
       quantity: 0,
     });
-    event.target.parentElement.parentNode.parentElement.remove();
+    const { current } = this.myRef;
+    current.remove();
     this.onTriggerFunction(teste, removeTotal);
   }
 
@@ -70,19 +57,21 @@ class CardItem extends Component {
   }
 
   render() {
-    const { teste: { title, thumbnail, price } } = this.props;
+    const { teste, itemProduct } = this.props;
     const { quantity } = this.state;
-    const priceQuanty = parseFloat(price.toFixed(2));
+    const priceQuantity = teste.price;
+    const data = itemProduct.filter((item) => item.id === teste.id);
     return (
-      <div className={ styles.container }>
+      <div className={ styles.container } ref={ this.myRef }>
         <div className={ styles.div1 }>
-          <img src={ thumbnail } alt={ title } />
+          <img src={ teste.thumbnail } alt={ teste.title } />
           <div>
             <button
               type="button"
               data-testid=" product-increase-quantity"
               onClick={ this.onTrigger }
               className={ styles.buttonAdd }
+              disabled={ data.length >= teste.available_quantity }
             >
               +
             </button>
@@ -111,12 +100,12 @@ class CardItem extends Component {
             <img src={ Bin } alt="remover" />
           </button>
 
-          <span>{ `R$ ${priceQuanty * quantity}`}</span>
+          <span>{ `R$ ${parseFloat(priceQuantity.toFixed(2)) * quantity}`}</span>
           <p
             className={ styles.title }
             data-testid="shopping-cart-product-name"
           >
-            { title }
+            { teste.title }
           </p>
         </div>
       </div>
